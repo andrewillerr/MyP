@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prommin Buaphan | Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ตัวแปรสีและค่าพื้นฐาน */
+        :root {
+            --bg-color: #0b1120;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.5);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* เมนูนำทาง (Glassmorphism) */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(11, 17, 32, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #38bdf8, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* โครงสร้างหน้าจำลอง (SPA Sections) */
+        .page-section {
+            display: none;
+            padding: 8rem 5% 4rem;
+            min-height: 100vh;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography & Utilities */
+        h1, h2 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, #f8fafc, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            padding-top: 0;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        /* Grid & Cards (Glassmorphism) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(to right, #38bdf8, #8b5cf6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            background-color: #334155; /* Placeholder color */
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #f8fafc;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* Timeline for Experiences */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            padding: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .timeline-date {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">P.Buaphan</div>
+        <div class="nav-links">
+            <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+            <a onclick="showPage('portfolio')" id="nav-portfolio">Portfolio</a>
+            <a onclick="showPage('experience')" id="nav-experience">Experience</a>
+            <a onclick="showPage('awards')" id="nav-awards">Awards</a>
+        </div>
+    </nav>
+
+    <!-- หน้า 1: Home (หน้าแรก) -->
+    <section id="home" class="page-section active hero">
+        <h1>Prommin Buaphan</h1>
+        <p>Computer Engineering Student @ KUSE<br>Driven by Computational Intelligence, IoT Development, and Green Transformation.</p>
+        <a onclick="showPage('portfolio')" class="btn" style="cursor: pointer;">Explore My Work</a>
+    </section>
+
+    <!-- หน้า 2: Portfolio (ผลงาน/โปรเจกต์) -->
+    <section id="portfolio" class="page-section">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="grid">
+            <!-- Project 1 -->
+            <div class="card">
+                <!-- ใส่รูปผลงานตรงนี้: <img src="sudoku-project.jpg" alt="Sudoku"> -->
+                <div style="width: 100%; height: 180px; background: #1e293b; border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: #64748b;">[ Image Placeholder ]</div>
+                <h3>Hybrid GA-PSO Killer Sudoku</h3>
+                <p>โปรแกรมสร้างปริศนา Killer Sudoku ด้วยอัลกอริทึมพันธุกรรม (GA) และ PSO ผสาน Linear Programming พร้อมระบบ Demo รูปแบบ Turn-based สำหรับผลัดกันเล่นเพื่อทดสอบประสิทธิภาพของพัซเซิล</p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">GA & PSO</span>
+                    <span class="tag">PuLP / DEAP</span>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="card">
+                <div style="width: 100%; height: 180px; background: #1e293b; border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: #64748b;">[ Image Placeholder ]</div>
+                <h3>Carbon Management System</h3>
+                <p>โปรเจกต์ Plan Management นำเสนอโซลูชันเพื่อการจัดการคาร์บอนในองค์กร ประยุกต์ใช้ AI ในกระบวนการ Green Transformation เพื่อตอบสนองต่อเป้าหมายความยั่งยืน (SDGs)</p>
+                <div class="tags">
+                    <span class="tag">AI</span>
+                    <span class="tag">Sustainability</span>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="card">
+                <div style="width: 100%; height: 180px; background: #1e293b; border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: #64748b;">[ Image Placeholder ]</div>
+                <h3>Advanced IoT & Hardware</h3>
+                <p>พัฒนาระบบสมองกลฝังตัว ออกแบบแผงวงจร (PCB) ด้วย EasyEDA และการเชื่อมต่อเซนเซอร์/จอแสดงผล LCD ผ่านไมโครคอนโทรลเลอร์ ESP32 และ Raspberry Pi</p>
+                <div class="tags">
+                    <span class="tag">ESP32</span>
+                    <span class="tag">Raspberry Pi</span>
+                    <span class="tag">EasyEDA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- หน้า 3: Experience (ประสบการณ์ และบทความ) -->
+    <section id="experience" class="page-section">
+        <h2 class="section-title">Experience & Activities</h2>
+        <div class="timeline">
+            <!-- Exp 1 -->
+            <div class="timeline-item">
+                <div class="timeline-date">Nov 2026 - Mar 2027 (Upcoming)</div>
+                <h3>Co-operative Education</h3>
+                <p>เตรียมความพร้อมและวางแผนสำหรับการฝึกปฏิบัติงานสหกิจศึกษา ณ บริษัท HANA Microelectronics เพื่อนำความรู้ด้านวิศวกรรมคอมพิวเตอร์ไปประยุกต์ใช้ในอุตสาหกรรมจริง</p>
+            </div>
+
+            <!-- Exp 2 -->
+            <div class="timeline-item">
+                <div class="timeline-date">2026</div>
+                <h3>KUSE Young Innovator Club</h3>
+                <p>มีส่วนร่วมในการจัดการประชุมและดูแลความเรียบร้อยของกิจกรรมในชมรม (จัดขึ้น ณ อาคาร 22 ห้อง 205) เพื่อเปิดรับสมาชิกใหม่และจัดการวาระของคณะกรรมการชมรม</p>
+            </div>
+
+            <!-- Exp 3 -->
+            <div class="timeline-item">
+                <div class="timeline-date">Academic Activity</div>
+                <h3>Academic Peer Reviewer</h3>
+                <p>มีประสบการณ์ในการรีวิวและให้ความเห็นเชิงวิชาการสำหรับบทความงานวิจัย (เช่น หัวข้อ Osteocyte Network) เพื่อตีพิมพ์ในวารสารวิชาการ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- หน้า 4: Awards (เกียรติบัตรและรางวัล) -->
+    <section id="awards" class="page-section">
+        <h2 class="section-title">Awards & Certifications</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Best of Track (Computational Intelligence)</h3>
+                <p>ได้รับรางวัลชนะเลิศในกลุ่ม Computational Intelligence จากเวทีการประชุมวิชาการระดับปริญญาตรีด้านคอมพิวเตอร์ภูมิภาคเอเชีย (AUCC 2025)</p>
+            </div>
+            
+            <div class="card">
+                <h3>Huawei Cloud HCCDA-AI</h3>
+                <p>ผ่านการรับรองความสามารถระดับมืออาชีพด้านปัญญาประดิษฐ์จาก Huawei Cloud (Certificate ID: HWENDCAIDA542613) เมื่อเดือนเมษายน 2026</p>
+            </div>
+
+            <div class="card">
+                <h3>Bronze Medal - UAMC 2025</h3>
+                <p>รางวัลเหรียญทองแดงจากการนำเสนอผลงานในงานประชุมวิชาการคณิตศาสตร์ประยุกต์ระดับปริญญาตรี ครั้งที่ 13</p>
+            </div>
+
+            <div class="card">
+                <h3>Thailand I-New Gen Award</h3>
+                <p>ได้รับรางวัลเหรียญเงินและเหรียญทองแดงจากการส่งผลงานเข้าร่วมประกวดนวัตกรรมระดับประเทศประจำปี 2024 และ 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script สำหรับควบคุมการสลับหน้า -->
+    <script>
+        function showPage(pageId) {
+            // ซ่อนทุกหน้า
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // เอาคลาส active ออกจากทุกเมนู
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // แสดงหน้าที่เลือก และไฮไลท์เมนู
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('nav-' + pageId).classList.add('active');
+            
+            // เลื่อนจอขึ้นไปบนสุดเสมอเมื่อเปลี่ยนหน้า
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
