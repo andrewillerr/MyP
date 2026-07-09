@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aun — AI/ML Research Portfolio</title>
+<title>Prommin Buaphan — AI/ML Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -221,6 +221,58 @@
   .project-card p{ margin:0; font-size: 14px; color: var(--ink-soft); flex-grow:1; }
   .project-card .chip-row .chip{ font-size: 11.5px; padding: 3px 9px; }
 
+  /* ============ CERTIFICATES ============ */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .cert-card:hover {
+    border-color: var(--indigo-soft);
+    box-shadow: 0 12px 24px -16px rgba(22,35,27,0.3);
+    transform: translateY(-4px);
+  }
+  .cert-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--radius);
+    border: 1px solid var(--bg-soft);
+    background-color: var(--bg-soft);
+  }
+  .cert-info h4 {
+    margin: 0 0 6px;
+    font-size: 15.5px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .cert-info p {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .cert-info .cert-id {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: var(--bg-soft);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--ink-faint);
+  }
+
   /* ============ GALLERY ============ */
   .gallery-intro{ color: var(--ink-soft); max-width: 62ch; margin: 12px 0 36px; font-size: 15px; }
   .gallery-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -265,6 +317,7 @@
         <a href="#about" data-i18n="nav-about">เกี่ยวกับ</a>
         <a href="#journey" data-i18n="nav-journey">เส้นทาง</a>
         <a href="#projects" data-i18n="nav-projects">ผลงาน</a>
+        <a href="#certificates" data-i18n="nav-certs">รางวัล</a>
         <a href="#skills" data-i18n="nav-skills">ทักษะ</a>
         <a href="#contact" data-i18n="nav-contact">ติดต่อ</a>
       </nav>
@@ -296,7 +349,7 @@
         <!-- แทนที่ src ด้านล่างด้วยรูปโปรไฟล์จริงของคุณ -->
         <img class="avatar" alt="รูปโปรไฟล์" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' rx='26' fill='%232B3B63'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dy='.1em' font-family='Space Grotesk, sans-serif' font-size='20' fill='%23F1F3EA'%3EA%3C/text%3E%3C/svg%3E">
         <div class="who">
-          <strong>Aun</strong>
+          <strong>Prommin Buaphan</strong>
           Master's Student — Comparative Deep Learning &amp; Evolutionary Computation
         </div>
       </div>
@@ -500,6 +553,67 @@
   </div>
 </section>
 
+<!-- ============ CERTIFICATES & AWARDS ============ -->
+<section id="certificates">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow" data-i18n="cert-eyebrow">ใบรับรอง & รางวัล</span>
+        <h2 data-i18n="cert-h2">Certifications & Awards</h2>
+      </div>
+      <p data-i18n="cert-sub">รางวัลจากการแข่งขันทางวิชาการและการรับรองทักษะทางเทคโนโลยี</p>
+    </div>
+
+    <div class="cert-grid">
+      <!-- Cert 1: Super AI -->
+      <div class="cert-card reveal">
+        <img src="messageImage_1783605141437_0.jpg" alt="Super AI Engineer Season 5" loading="lazy">
+        <div class="cert-info">
+          <h4 data-i18n="cert1-h">Super AI Engineer Season 5</h4>
+          <p data-i18n="cert1-p">Foundation AI (Theory) Level — Artificial Intelligence Association of Thailand</p>
+        </div>
+      </div>
+
+      <!-- Cert 2: Huawei / TPQI Page 1 -->
+      <div class="cert-card reveal">
+        <img src="messageImage_1783605110416_0.jpg" alt="TPQI Huawei Certificate" loading="lazy">
+        <div class="cert-info">
+          <h4 data-i18n="cert2-h">Certificate of Competency (AI Literacy)</h4>
+          <p data-i18n="cert2-p">AI Literacy for Power Users — TPQI &amp; Huawei Technologies</p>
+          <span class="cert-id">ID: OSCN-0012/AI-000-0000-A-26/041008</span>
+        </div>
+      </div>
+
+      <!-- Cert 3: Huawei / TPQI Page 2 -->
+      <div class="cert-card reveal">
+        <img src="messageImage_1783605125128_0.jpg" alt="TPQI Huawei Certificate Details" loading="lazy">
+        <div class="cert-info">
+          <h4 data-i18n="cert3-h">Certificate of Competency (Details)</h4>
+          <p data-i18n="cert3-p">Occupational Standard for AI Literacy Competencies</p>
+        </div>
+      </div>
+
+      <!-- Cert 4: KUSE AI Hackathon -->
+      <div class="cert-card reveal">
+        <img src="messageImage_1783605160078_0.jpg" alt="KUSE AI Hackathon 2025" loading="lazy">
+        <div class="cert-info">
+          <h4 data-i18n="cert4-h">First Honour Award</h4>
+          <p data-i18n="cert4-p">KUSE AI Hackathon 2025 — Faculty of Science and Engineering, Kasetsart University</p>
+        </div>
+      </div>
+
+      <!-- Cert 5: KU AIdeation Challenge -->
+      <div class="cert-card reveal">
+        <img src="messageImage_1783605150378_0.jpg" alt="KU AIdeation Challenge 2024" loading="lazy">
+        <div class="cert-info">
+          <h4 data-i18n="cert5-h">Finalist: Certificate of Achievement</h4>
+          <p data-i18n="cert5-p">KU AIdeation Challenge 2024 — Kasetsart University &amp; SEAMEO STEM-ED</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ GALLERY ============ -->
 <section id="gallery">
   <div class="container">
@@ -673,7 +787,7 @@
     </div>
 
     <div class="foot-note">
-      <span>© 2026 Aun — AI/ML Research Portfolio</span>
+      <span>© 2026 Prommin Buaphan — AI/ML Portfolio</span>
       <span>Kasetsart University, Chalermphrakiat Sakon Nakhon Campus</span>
     </div>
   </div>
@@ -717,7 +831,7 @@
     }
   }
 
-  var revealEls = document.querySelectorAll('.reveal, .project-card');
+  var revealEls = document.querySelectorAll('.reveal, .project-card, .cert-card');
   if ('IntersectionObserver' in window && !prefersReduced){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
@@ -734,6 +848,7 @@
     'nav-about':    { th:'เกี่ยวกับ', en:'About' },
     'nav-journey':  { th:'เส้นทาง', en:'Journey' },
     'nav-projects': { th:'ผลงาน', en:'Projects' },
+    'nav-certs':    { th:'รางวัล', en:'Awards' },
     'nav-skills':   { th:'ทักษะ', en:'Skills' },
     'nav-contact':  { th:'ติดต่อ', en:'Contact' },
 
@@ -807,6 +922,26 @@
     'card5-p': { th:'ตรวจสอบว่ากลยุทธ์การแก้ปัญหาของโมเดลสอดคล้องกับเทคนิคการแก้ซูโดกุของมนุษย์มากน้อยเพียงใด', en:"Examining how closely a model's problem-solving strategy aligns with human Sudoku-solving techniques." },
     'card6-h': { th:'ออกแบบเครือข่าย LoRaWAN สำหรับติดตามรถบัสในมหาวิทยาลัย', en:'Designing a LoRaWAN Network for University Bus Tracking' },
     'card6-p': { th:'ออกแบบและจำลองเครือข่าย LoRaWAN ด้วย OMNeT++ สำหรับระบบติดตามรถรับส่งภายในมหาวิทยาลัย ส่วนหนึ่งของแนวคิด Smart Campus ที่ มก.ฉกส.', en:'Designed and simulated a LoRaWAN network for a university shuttle-tracking system using OMNeT++, part of a broader smart-campus initiative.' },
+
+    /* Certificates & Awards */
+    'cert-eyebrow': { th:'ใบรับรอง & รางวัล', en:'Certifications & Awards' },
+    'cert-h2': { th:'ใบรับรอง & รางวัล', en:'Certifications & Awards' },
+    'cert-sub': { th:'รางวัลจากการแข่งขันทางวิชาการและการรับรองทักษะทางเทคโนโลยี', en:'Academic competition awards and technology skill certifications.' },
+    
+    'cert1-h': { th:'Super AI Engineer Season 5', en:'Super AI Engineer Season 5' },
+    'cert1-p': { th:'Foundation AI (Theory) Level — Artificial Intelligence Association of Thailand', en:'Foundation AI (Theory) Level — Artificial Intelligence Association of Thailand' },
+    
+    'cert2-h': { th:'Certificate of Competency (AI Literacy)', en:'Certificate of Competency (AI Literacy)' },
+    'cert2-p': { th:'AI Literacy for Power Users — TPQI &amp; Huawei Technologies', en:'AI Literacy for Power Users — TPQI &amp; Huawei Technologies' },
+    
+    'cert3-h': { th:'Certificate of Competency (Details)', en:'Certificate of Competency (Details)' },
+    'cert3-p': { th:'Occupational Standard for AI Literacy Competencies', en:'Occupational Standard for AI Literacy Competencies' },
+    
+    'cert4-h': { th:'First Honour Award', en:'First Honour Award' },
+    'cert4-p': { th:'KUSE AI Hackathon 2025 — Faculty of Science and Engineering, Kasetsart University', en:'KUSE AI Hackathon 2025 — Faculty of Science and Engineering, Kasetsart University' },
+    
+    'cert5-h': { th:'Finalist: Certificate of Achievement', en:'Finalist: Certificate of Achievement' },
+    'cert5-p': { th:'KU AIdeation Challenge 2024 — Kasetsart University &amp; SEAMEO STEM-ED', en:'KU AIdeation Challenge 2024 — Kasetsart University &amp; SEAMEO STEM-ED' },
 
     'gallery-eyebrow': { th:'ภาพประกอบ', en:'Visuals' },
     'gallery-h2': { th:'ตัวอย่างผลลัพธ์งานวิจัย', en:'Sample Research Visuals' },
