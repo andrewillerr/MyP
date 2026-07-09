@@ -167,19 +167,6 @@
   .stat .label{ font-size: 13px; color: var(--ink-faint); }
   @media (max-width: 480px){ .stat-row{ grid-template-columns: 1fr 1fr; } }
 
-  /* ============ JOURNEY ============ */
-  .journey-intro{ color: var(--ink-soft); max-width: 68ch; margin: 12px 0 40px; font-size: 15.5px; }
-  .timeline{ position:relative; padding-left: 30px; border-left: 2px solid var(--line); display:flex; flex-direction:column; gap:30px; margin: 0 0 44px; }
-  .timeline-item{ position:relative; }
-  .timeline-item::before{
-    content:""; position:absolute; left:-38px; top:3px; width:12px; height:12px; border-radius:50%;
-    background: var(--indigo-soft); border:3px solid var(--bg); box-shadow: 0 0 0 2px var(--line-strong);
-  }
-  .timeline-item.current::before{ background: var(--amber); box-shadow: 0 0 0 2px var(--amber-soft); }
-  .timeline-item .ph{ font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); letter-spacing: .06em; text-transform: uppercase; }
-  .timeline-item h4{ margin:4px 0 6px; font-size: 16.5px; color: var(--ink); }
-  .timeline-item p{ margin:0; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
-
   .edu-card{ background: var(--surface); border:1px solid var(--line); border-radius: var(--radius-lg); padding: 22px 26px; display:flex; align-items:center; gap:18px; margin-bottom:12px;}
   .edu-card .icon-badge{ width:44px; height:44px; background: var(--bg-soft); color: var(--indigo); flex-shrink:0; }
   .edu-card .icon-badge svg{ width:20px; height:20px; }
@@ -250,6 +237,11 @@
     border-radius: var(--radius);
     border: 1px solid var(--bg-soft);
     background-color: var(--bg-soft);
+    cursor: zoom-in; /* เปลี่ยนเคอร์เซอร์เป็นแว่นขยาย */
+    transition: opacity 0.2s ease;
+  }
+  .cert-card img:hover {
+    opacity: 0.85;
   }
   .cert-info h4 {
     margin: 0 0 6px;
@@ -271,6 +263,53 @@
     padding: 4px 8px;
     border-radius: 4px;
     color: var(--ink-faint);
+  }
+
+  /* ============ IMAGE MODAL (Lightbox) ============ */
+  #image-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(22, 35, 27, 0.85); /* สีพื้นหลังโปร่งแสง */
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  #image-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+  }
+  .modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    object-fit: contain;
+  }
+  #image-modal.show .modal-content {
+    transform: scale(1);
+  }
+  .modal-close {
+    position: absolute;
+    top: 24px;
+    right: 36px;
+    color: #F1F3EA;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    line-height: 1;
+  }
+  .modal-close:hover {
+    color: var(--amber);
   }
 
   /* ============ GALLERY ============ */
@@ -338,9 +377,9 @@
     <div>
       <span class="eyebrow" data-i18n="hero-eyebrow"> · KU.CSC</span>
       
+      <h1 data-i18n="hero-h1">ดูว่าโมเดลแต่ละแบบ<span class="accent"> "พัง" ตรงไหน</span> เมื่อกติกาเข้มงวดขึ้นทีละขั้น</h1>
       <p class="lede" data-i18n="hero-lede">
         นิสิตหลักสูตรวิศวกรรมคอมพิวเตอร์ ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์ คณะวิทยาศาสตร์และวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร
-        
       </p>
       <div class="cta-row">
         <a href="#projects" class="btn btn-primary" data-i18n="cta-projects">ดูผลงานและโครงงาน</a>
@@ -351,7 +390,7 @@
         <img class="avatar" alt="รูปโปรไฟล์" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' rx='26' fill='%232B3B63'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dy='.1em' font-family='Space Grotesk, sans-serif' font-size='20' fill='%23F1F3EA'%3EA%3C/text%3E%3C/svg%3E">
         <div class="who">
           <strong>Prommin Buaphan</strong>
-          B.Eng. Student — Computer Engineering
+          B.Eng. Student — Computer Engineering<br>
           Master's Student — Electrical and Computer Engineering
         </div>
       </div>
@@ -401,12 +440,11 @@
         <div>
           <div class="edu-text">
             <strong data-i18n="edu-degree-bachelor">ปริญญาตรี — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)</strong>
-            <span data-i18n="edu-note-bachelor">หลักสูตร วศ.บ. วิศวกรรมคอมพิวเตอร์ · 2566 – ปัจจุบัน</span>
-            
+            <span data-i18n="edu-note-bachelor" style="display:block; margin-bottom:8px;">หลักสูตร วศ.บ. วิศวกรรมคอมพิวเตอร์ · 2566 – ปัจจุบัน</span>
           </div>
           <div class="edu-text">
             <strong data-i18n="edu-degree-master">ปริญญาโท — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)</strong>
-            <span data-i18n="edu-note-master" style="display:block; margin-bottom:8px;">หลักสูตร วศ.ม. วิศวกรรมไฟฟ้าและคอมพิวเตอร์ · 2569 – ปัจจุบัน</span>
+            <span data-i18n="edu-note-master">หลักสูตร วศ.ม. วิศวกรรมไฟฟ้าและคอมพิวเตอร์ · 2569 – ปัจจุบัน</span>
           </div>
         </div>
       </div>
@@ -456,7 +494,14 @@
         <div class="chip-row"><span class="chip">GA</span><span class="chip">DEAP</span><span class="chip">Genetic Algorithm</span></div>
       </div>
 
- 
+      <div class="project-card reveal">
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l2-5h6l2 5h4"/><circle cx="7.5" cy="16" r="1.8"/><circle cx="16.5" cy="16" r="1.8"/><path d="M5.5 16h1.7M15 16h1.7"/></svg>
+        </div>
+        <h4 data-i18n="card2-h">ปรับเส้นทางรถรับส่งในมหาวิทยาลัยด้วย MO-CVRP</h4>
+        <p data-i18n="card2-p">จัดกรอบปัญหาใหม่จาก TSP ดั้งเดิม ให้เป็น Multi-Objective Capacitated VRP แล้วแก้ด้วย GA เพื่อสมดุลระยะทางรวมและความจุผู้โดยสารต่อคัน</p>
+        <div class="chip-row"><span class="chip">GA</span><span class="chip">VRP</span><span class="chip">Smart Campus</span></div>
+      </div>
 
       <div class="project-card reveal">
         <div class="icon-badge">
@@ -467,6 +512,23 @@
         <div class="chip-row"><span class="chip">Google Earth Engine</span><span class="chip">Remote Sensing</span></div>
       </div>
 
+      <div class="project-card reveal">
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V9M11 19V4M18 19v-7"/><line x1="3" y1="19" x2="21" y2="19"/></svg>
+        </div>
+        <h4 data-i18n="card4-h">วัดขีดจำกัดของ Classical ML บนโจทย์ซูโดกุ</h4>
+        <p data-i18n="card4-p">เปรียบเทียบ Random Forest, SVM และ k-NN บนโจทย์ซูโดกุ เพื่อตั้งเป็นเส้นฐานเชิงประจักษ์ก่อนต่อยอดสู่โมเดล Deep Learning</p>
+        <div class="chip-row"><span class="chip">Random Forest</span><span class="chip">SVM</span><span class="chip">k-NN</span></div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg>
+        </div>
+        <h4 data-i18n="card5-h">อธิบายการตัดสินใจของโมเดลด้วย SHAP และ Grad-CAM</h4>
+        <p data-i18n="card5-p">ตรวจสอบว่ากลยุทธ์การแก้ปัญหาของโมเดลสอดคล้องกับเทคนิคการแก้ซูโดกุของมนุษย์มากน้อยเพียงใด</p>
+        <div class="chip-row"><span class="chip">SHAP</span><span class="chip">Grad-CAM</span><span class="chip">Explainable AI</span></div>
+      </div>
 
       <div class="project-card reveal">
         <div class="icon-badge">
@@ -487,7 +549,7 @@
         <span class="eyebrow" data-i18n="cert-eyebrow">ใบรับรอง & รางวัล</span>
         <h2 data-i18n="cert-h2">Certifications & Awards</h2>
       </div>
-      <p data-i18n="cert-sub">รางวัลจากการแข่งขันทางวิชาการและการรับรองทักษะทางเทคโนโลยี</p>
+      <p data-i18n="cert-sub">รางวัลจากการแข่งขันทางวิชาการและการรับรองทักษะทางเทคโนโลยี (คลิกเพื่อขยายรูปภาพ)</p>
     </div>
 
     <div class="cert-grid">
@@ -531,8 +593,11 @@
   </div>
 </section>
 
-
-
+<!-- Image Modal (Lightbox) Structure -->
+<div id="image-modal" aria-hidden="true">
+  <span class="modal-close" aria-label="Close">&times;</span>
+  <img class="modal-content" id="expanded-img" alt="Expanded Certificate">
+</div>
 
 <footer id="contact">
   <div class="container">
@@ -622,18 +687,63 @@
     revealEls.forEach(function(el){ el.classList.add('in-view'); });
   }
 
+  /* ============ IMAGE MODAL LOGIC ============ */
+  var modal = document.getElementById("image-modal");
+  var expandedImg = document.getElementById("expanded-img");
+  var spanClose = document.getElementsByClassName("modal-close")[0];
+  var certImages = document.querySelectorAll('.cert-card img');
+
+  function closeModal() {
+    modal.classList.remove("show");
+    setTimeout(function() {
+      modal.style.display = "none";
+      expandedImg.src = "";
+    }, 300); // Wait for transition to finish
+  }
+
+  certImages.forEach(function(img) {
+    img.addEventListener('click', function() {
+      modal.style.display = "flex";
+      // Small timeout to allow display:flex to register before adding opacity class
+      setTimeout(function() {
+        modal.classList.add("show");
+      }, 10);
+      expandedImg.src = this.src;
+    });
+  });
+
+  spanClose.addEventListener('click', closeModal);
+  
+  // Close if clicking outside the image
+  modal.addEventListener('click', function(e) {
+    if (e.target !== expandedImg) {
+      closeModal();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape" && modal.classList.contains("show")) {
+      closeModal();
+    }
+  });
+
   /* ============ TH / EN TOGGLE ============ */
   var dict = {
-    /* เมนูนำทางอัปเดตตามคีย์เวิร์ดที่ต้องการ */
     'nav-about':    { th:'ประวัติ', en:'Profile' },
     'nav-projects': { th:'ผลงานและโครงงาน', en:'Works & Projects' },
     'nav-certs':    { th:'รางวัล', en:'Awards' },
-    'nav-skills':   { th:'ทักษะ', en:'Skills' },
     'nav-contact':  { th:'ที่อยู่ติดต่อ', en:'Contact Info' },
 
     'hero-eyebrow': { th:'AI / ML · มก.ฉกส.', en:'AI / ML · Kasetsart University' },
     'hero-h1': {
-     
+      th:'ดูว่าโมเดลแต่ละแบบ<span class="accent"> "พัง" ตรงไหน</span> เมื่อกติกาเข้มงวดขึ้นทีละขั้น',
+      en:'Finding out where each model <span class="accent">breaks down</span> as the constraints get tighter'
+    },
+    'hero-lede': {
+      th:'นิสิตหลักสูตรวิศวกรรมคอมพิวเตอร์ ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์ คณะวิทยาศาสตร์และวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร',
+      en:"Computer Engineering student, Department of Electrical and Computer Engineering, Faculty of Science and Engineering, Kasetsart University, Chalermphrakiat Sakon Nakhon Campus."
+    },
     'cta-projects': { th:'ดูผลงานและโครงงาน', en:'View Works & Projects' },
     'cta-contact':  { th:'ที่อยู่ติดต่อ', en:'Contact Info' },
 
@@ -644,15 +754,14 @@
       en:"Focused on empirical comparison of neural network architectures — not just which model is 'more accurate,' but <strong>which one degrades the slowest as problem complexity increases</strong>. The core thesis uses a self-collected Sudoku dataset spanning five difficulty levels to analyze per-difficulty degradation across CNN, GNN, and Transformer architectures — a gap most existing research hasn't studied systematically."
     },
     'about-p2': {
-      th:'นอกเหนือจากงานวิทยานิพนธ์ ยังมีความสนใจต่อเนื่องด้าน<strong>การคำนวณเชิงวิวัฒนาการ</strong> (Genetic Algorithm, NSGA-II) สำหรับปัญหาหลายวัตถุประสงค์ ตั้งแต่การออกแบบโจทย์ซูโดกุ ไปจนถึงการวางเส้นทางรถรับส่งในมหาวิทยาลัยและระบบมหาวิทยาลัยอัจฉริยะ',
-      en:"Beyond the thesis, there's an ongoing interest in <strong>evolutionary computation</strong> (Genetic Algorithms, NSGA-II) for multi-objective problems — from designing Sudoku puzzle variants to routing university shuttle buses and building smart-campus systems."
+      th:'นอกเหนือจากงานวิทยานิพนธ์ ยังมีความสนใจต่อเนื่องด้าน<strong>การคำนวณเชิงวิวัฒนาการ</strong> (Genetic Algorithm) สำหรับปัญหาหลายวัตถุประสงค์ ตั้งแต่การออกแบบโจทย์ซูโดกุ ไปจนถึงการวางเส้นทางรถรับส่งในมหาวิทยาลัยและระบบมหาวิทยาลัยอัจฉริยะ',
+      en:"Beyond the thesis, there's an ongoing interest in <strong>evolutionary computation</strong> (Genetic Algorithms) for multi-objective problems — from designing Sudoku puzzle variants to routing university shuttle buses and building smart-campus systems."
     },
     'edu-h3': { th:'ประวัติการศึกษา', en:'Education' },
     'edu-degree-bachelor': { th:'ปริญญาตรี — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)', en:"Bachelor's Degree — Kasetsart University, Chalermphrakiat Sakon Nakhon Campus" },
     'edu-note-bachelor': { th:'หลักสูตร วศ.บ. วิศวกรรมคอมพิวเตอร์ · 2566 – ปัจจุบัน', en:'Bachelor of Engineering (Computer Engineering) · 2023 – Present' },
     'edu-degree-master': { th:'ปริญญาโท — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)', en:"Master's Degree — Kasetsart University, Chalermphrakiat Sakon Nakhon Campus" },
     'edu-note-master': { th:'หลักสูตร วศ.ม. วิศวกรรมไฟฟ้าและคอมพิวเตอร์ · 2569 – ปัจจุบัน', en:'Master of Engineering (Electrical and Computer Engineering) · 2026 – Present' },
-    
 
     'projects-eyebrow': { th:'ผลงานและโครงงาน', en:'Works & Projects' },
     'projects-h2': { th:'งานวิจัยและโปรเจกต์', en:'Research & Projects' },
@@ -665,22 +774,27 @@
       en:'The core thesis comparing three neural network architectures on a self-collected Sudoku dataset spanning five difficulty levels. Focuses on per-difficulty degradation analysis across architectures as problem constraints tighten — extending the structural approach of Jana et al. (2025) and engaging with recent work like ConsFormer and HRM.'
     },
 
-    'card1-h': { th:'ConstraintDesignerGA — ออกแบบโจทย์ซูโดกุด้วย GA', en:'ConstraintDesignerGA — Designing Sudoku Puzzles with GA' },
+    'card1-h': { th:'ConstraintDesignerGA — ออกแบบโจทย์ซูโดกุด้วย ILP+GA', en:'ConstraintDesignerGA — Designing Sudoku Puzzles with ILP+GA' },
     'card1-p': { th:'เครื่องมือออกแบบโจทย์แบบหลายวัตถุประสงค์ด้วย GA ผ่าน DEAP', en:'A multi-objective Sudoku puzzle designer built with GA via DEAP' },
-    'card2-p': { th:'จัดกรอบปัญหาใหม่จาก TSP ดั้งเดิม ให้เป็น Multi-Objective Capacitated VRP แล้วแก้ด้วย GA เพื่อสมดุลระยะทางรวมและความจุผู้โดยสารต่อคัน', en:'Reframed campus shuttle routing from classic TSP into a Multi-Objective Capacitated VRP, solved with NSGA-II to balance total distance against per-vehicle passenger capacity.' },
-    'card3-h': { th:'ประเมินจุดความร้อนด้วย GEE + ML', en:'Estimating Carbon Sequestration in Deciduous Dipterocarp Forests with GEE + ML' },
-    'card3-p': { th:'ดึงข้อมูลผ่าน Google Earth Engine → โมเดล ML ประเมินคาร์บอน → แดชบอร์ดบนเว็บ', en:'A four-step pipeline: field survey → data extraction via Google Earth Engine → ML model for carbon estimation → web dashboard.' },
+    
+    'card2-h': { th:'ปรับเส้นทางรถรับส่งในมหาวิทยาลัยด้วย MO-CVRP', en:'Optimizing University Shuttle Routes with MO-CVRP' },
+    'card2-p': { th:'จัดกรอบปัญหาใหม่จาก TSP ดั้งเดิม ให้เป็น Multi-Objective Capacitated VRP แล้วแก้ด้วย GA เพื่อสมดุลระยะทางรวมและความจุผู้โดยสารต่อคัน', en:'Reframed campus shuttle routing from classic TSP into a Multi-Objective Capacitated VRP, solved with GA to balance total distance against per-vehicle passenger capacity.' },
+    
+    'card3-h': { th:'GeoAI ตรวจจับจุดความร้อนด้วย GEE + ML', en:'GeoAI Hotspot Detection with GEE + ML' },
+    'card3-p': { th:'ดึงข้อมูลผ่าน Google Earth Engine → โมเดล ML → แดชบอร์ดบนเว็บ', en:'Data extraction via Google Earth Engine → ML model → Web dashboard.' },
+    
     'card4-h': { th:'วัดขีดจำกัดของ Classical ML บนโจทย์ซูโดกุ', en:'Testing the Limits of Classical ML on Sudoku' },
     'card4-p': { th:'เปรียบเทียบ Random Forest, SVM และ k-NN บนโจทย์ซูโดกุ เพื่อตั้งเป็นเส้นฐานเชิงประจักษ์ก่อนต่อยอดสู่โมเดล Deep Learning', en:'Comparing Random Forest, SVM, and k-NN on Sudoku to establish an empirical baseline before moving to deep learning models.' },
+    
     'card5-h': { th:'อธิบายการตัดสินใจของโมเดลด้วย SHAP และ Grad-CAM', en:'Explaining Model Decisions with SHAP and Grad-CAM' },
     'card5-p': { th:'ตรวจสอบว่ากลยุทธ์การแก้ปัญหาของโมเดลสอดคล้องกับเทคนิคการแก้ซูโดกุของมนุษย์มากน้อยเพียงใด', en:"Examining how closely a model's problem-solving strategy aligns with human Sudoku-solving techniques." },
-    'card6-h': { th:'ออกแบบเครือข่าย LoRaWAN สำหรับติดตามรถบัสในมหาวิทยาลัย', en:'Designing a LoRaWAN Network for University Bus Tracking' },
-    'card6-p': { th:'ออกแบบและจำลองเครือข่าย LoRaWAN ด้วย OMNeT++ สำหรับระบบติดตามรถรับส่งภายในมหาวิทยาลัย ส่วนหนึ่งของแนวคิด Smart Campus ที่ มก.ฉกส.', en:'Designed and simulated a LoRaWAN network for a university shuttle-tracking system using OMNeT++, part of a broader smart-campus initiative.' },
+    
+    'card6-h': { th:'ออกแบบเครือข่าย LoRaWAN และปรับปรุงประสิทธิภาพด้วย AI สำหรับติดตามรถบัสในมหาวิทยาลัย', en:'Designing a LoRaWAN Network and AI Optimization for University Bus Tracking' },
+    'card6-p': { th:'ออกแบบเครือข่าย LoRaWAN สำหรับระบบติดตามรถรับส่งภายในมหาวิทยาลัย ส่วนหนึ่งของแนวคิด Smart Campus ที่ มก.ฉกส.', en:'Designed a LoRaWAN network for a university shuttle-tracking system, part of a broader smart-campus initiative.' },
 
-    /* Certificates & Awards */
     'cert-eyebrow': { th:'ใบรับรอง & รางวัล', en:'Certifications & Awards' },
     'cert-h2': { th:'ใบรับรอง & รางวัล', en:'Certifications & Awards' },
-    'cert-sub': { th:'รางวัลจากการแข่งขันทางวิชาการและการรับรองทักษะทางเทคโนโลยี', en:'Academic competition awards and technology skill certifications.' },
+    'cert-sub': { th:'รางวัลจากการแข่งขันทางวิชาการและการรับรองทักษะทางเทคโนโลยี (คลิกเพื่อขยายรูปภาพ)', en:'Academic competition awards and technology skill certifications. (Click to enlarge)' },
     
     'cert1-h': { th:'Super AI Engineer Season 5', en:'Super AI Engineer Season 5' },
     'cert1-p': { th:'Foundation AI (Theory) Level — Artificial Intelligence Association of Thailand', en:'Foundation AI (Theory) Level — Artificial Intelligence Association of Thailand' },
@@ -696,11 +810,6 @@
     
     'cert5-h': { th:'Finalist: Certificate of Achievement', en:'Finalist: Certificate of Achievement' },
     'cert5-p': { th:'KU AIdeation Challenge 2024 — Kasetsart University &amp; SEAMEO STEM-ED', en:'KU AIdeation Challenge 2024 — Kasetsart University &amp; SEAMEO STEM-ED' },
-
-
-    'skills-eyebrow': { th:'ทักษะ', en:'Skills' },
-    'skills-h2': { th:'ทักษะ &amp; เครื่องมือ', en:'Skills &amp; Tools' },
-    'skillgroup4-cap': { th:'เครื่องมือ &amp; แพลตฟอร์ม', en:'Tools &amp; Platforms' },
 
     'contact-eyebrow': { th:'ที่อยู่ติดต่อ', en:'Contact Info' },
     'contact-h2': { th:'สนใจร่วมงานวิจัยหรือพูดคุยเรื่องโปรเจกต์?', en:'Interested in collaborating or discussing a project?' },
