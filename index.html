@@ -161,12 +161,6 @@
   .about-body p{ color: var(--ink-soft); margin: 0 0 16px; max-width: 62ch; }
   .about-body strong{ color: var(--ink); }
 
-  .stat-row{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 28px; }
-  .stat{ border-left: 2px solid var(--amber); padding-left: 14px; }
-  .stat .num{ font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--indigo); display:block; }
-  .stat .label{ font-size: 13px; color: var(--ink-faint); }
-  @media (max-width: 480px){ .stat-row{ grid-template-columns: 1fr 1fr; } }
-
   .edu-card{ background: var(--surface); border:1px solid var(--line); border-radius: var(--radius-lg); padding: 22px 26px; display:flex; align-items:center; gap:18px; margin-bottom:12px;}
   .edu-card .icon-badge{ width:44px; height:44px; background: var(--bg-soft); color: var(--indigo); flex-shrink:0; }
   .edu-card .icon-badge svg{ width:20px; height:20px; }
@@ -237,7 +231,7 @@
     border-radius: var(--radius);
     border: 1px solid var(--bg-soft);
     background-color: var(--bg-soft);
-    cursor: zoom-in; /* เปลี่ยนเคอร์เซอร์เป็นแว่นขยาย */
+    cursor: zoom-in;
     transition: opacity 0.2s ease;
   }
   .cert-card img:hover {
@@ -265,7 +259,7 @@
     color: var(--ink-faint);
   }
 
-  /* ============ IMAGE MODAL (Lightbox) ============ */
+  /* ============ IMAGE MODAL ============ */
   #image-modal {
     display: none;
     position: fixed;
@@ -274,7 +268,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(22, 35, 27, 0.85); /* สีพื้นหลังโปร่งแสง */
+    background-color: rgba(22, 35, 27, 0.85);
     backdrop-filter: blur(6px);
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -311,23 +305,6 @@
   .modal-close:hover {
     color: var(--amber);
   }
-
-  /* ============ GALLERY ============ */
-  .gallery-intro{ color: var(--ink-soft); max-width: 62ch; margin: 12px 0 36px; font-size: 15px; }
-  .gallery-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  @media (max-width: 720px){ .gallery-grid{ grid-template-columns: 1fr; } }
-  .gallery-card{ position:relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px; }
-  .gallery-card svg{ width:100%; height:auto; display:block; margin-bottom: 14px; }
-  .badge-mockup{ position:absolute; top:16px; right:16px; font-family: var(--font-mono); font-size: 10.5px; background: var(--amber-soft); color: #6B4E14; padding: 3px 9px; border-radius: 999px; }
-  .gallery-card .cap-text{ font-size: 13.5px; color: var(--ink-soft); margin:0; }
-
-  /* ============ SKILLS ============ */
-  .skills-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
-  @media (max-width: 720px){ .skills-grid{ grid-template-columns: 1fr; } }
-  .skill-group{ background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px 26px; }
-  .skill-group .cap{ font-family: var(--font-display); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--indigo-soft); font-weight: 600; margin-bottom: 14px; display:block; }
-  .skill-chips{ display:flex; flex-wrap:wrap; gap:8px; }
-  .skill-chips .chip{ background: var(--bg-soft); }
 
   /* ============ CONTACT / FOOTER ============ */
   footer{ background: var(--indigo); color: #ECEEE2; padding: 72px 0 48px; }
@@ -496,15 +473,6 @@
 
       <div class="project-card reveal">
         <div class="icon-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l2-5h6l2 5h4"/><circle cx="7.5" cy="16" r="1.8"/><circle cx="16.5" cy="16" r="1.8"/><path d="M5.5 16h1.7M15 16h1.7"/></svg>
-        </div>
-        <h4 data-i18n="card2-h">ปรับเส้นทางรถรับส่งในมหาวิทยาลัยด้วย MO-CVRP</h4>
-        <p data-i18n="card2-p">จัดกรอบปัญหาใหม่จาก TSP ดั้งเดิม ให้เป็น Multi-Objective Capacitated VRP แล้วแก้ด้วย GA เพื่อสมดุลระยะทางรวมและความจุผู้โดยสารต่อคัน</p>
-        <div class="chip-row"><span class="chip">GA</span><span class="chip">VRP</span><span class="chip">Smart Campus</span></div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="icon-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c-4-2-7-6-7-10a7 7 0 0 1 14 0c0 4-3 8-7 10z"/><path d="M12 21V9"/></svg>
         </div>
         <h4 data-i18n="card3-h">GeoAI ตรวจจับจุดความร้อนด้วย GEE + ML</h4>
@@ -519,15 +487,6 @@
         <h4 data-i18n="card4-h">วัดขีดจำกัดของ Classical ML บนโจทย์ซูโดกุ</h4>
         <p data-i18n="card4-p">เปรียบเทียบ Random Forest, SVM และ k-NN บนโจทย์ซูโดกุ เพื่อตั้งเป็นเส้นฐานเชิงประจักษ์ก่อนต่อยอดสู่โมเดล Deep Learning</p>
         <div class="chip-row"><span class="chip">Random Forest</span><span class="chip">SVM</span><span class="chip">k-NN</span></div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="icon-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg>
-        </div>
-        <h4 data-i18n="card5-h">อธิบายการตัดสินใจของโมเดลด้วย SHAP และ Grad-CAM</h4>
-        <p data-i18n="card5-p">ตรวจสอบว่ากลยุทธ์การแก้ปัญหาของโมเดลสอดคล้องกับเทคนิคการแก้ซูโดกุของมนุษย์มากน้อยเพียงใด</p>
-        <div class="chip-row"><span class="chip">SHAP</span><span class="chip">Grad-CAM</span><span class="chip">Explainable AI</span></div>
       </div>
 
       <div class="project-card reveal">
@@ -571,8 +530,9 @@
       <div class="cert-card reveal">
         <img src="messageImage_1783605125128_0.jpg" alt="TPQI Huawei Certificate Details" loading="lazy">
         <div class="cert-info">
-          <h4 data-i18n="cert3-h">Certificate of Competency (Details)</h4>
-          <p data-i18n="cert3-p">Occupational Standard for AI Literacy Competencies</p>
+          <h4 data-i18n="cert3-h">Certificate of Competency (AI Literacy)</h4>
+          <p data-i18n="cert3-p">AI Literacy for Power Users — TPQI &amp; Huawei Technologies</p>
+          <span class="cert-id">ID: OSCN-0012/AI-000-0000-A-26/041008</span>
         </div>
       </div>
       <div class="cert-card reveal">
@@ -698,13 +658,12 @@
     setTimeout(function() {
       modal.style.display = "none";
       expandedImg.src = "";
-    }, 300); // Wait for transition to finish
+    }, 300);
   }
 
   certImages.forEach(function(img) {
     img.addEventListener('click', function() {
       modal.style.display = "flex";
-      // Small timeout to allow display:flex to register before adding opacity class
       setTimeout(function() {
         modal.classList.add("show");
       }, 10);
@@ -714,14 +673,12 @@
 
   spanClose.addEventListener('click', closeModal);
   
-  // Close if clicking outside the image
   modal.addEventListener('click', function(e) {
     if (e.target !== expandedImg) {
       closeModal();
     }
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === "Escape" && modal.classList.contains("show")) {
       closeModal();
@@ -777,17 +734,11 @@
     'card1-h': { th:'ConstraintDesignerGA — ออกแบบโจทย์ซูโดกุด้วย ILP+GA', en:'ConstraintDesignerGA — Designing Sudoku Puzzles with ILP+GA' },
     'card1-p': { th:'เครื่องมือออกแบบโจทย์แบบหลายวัตถุประสงค์ด้วย GA ผ่าน DEAP', en:'A multi-objective Sudoku puzzle designer built with GA via DEAP' },
     
-    'card2-h': { th:'ปรับเส้นทางรถรับส่งในมหาวิทยาลัยด้วย MO-CVRP', en:'Optimizing University Shuttle Routes with MO-CVRP' },
-    'card2-p': { th:'จัดกรอบปัญหาใหม่จาก TSP ดั้งเดิม ให้เป็น Multi-Objective Capacitated VRP แล้วแก้ด้วย GA เพื่อสมดุลระยะทางรวมและความจุผู้โดยสารต่อคัน', en:'Reframed campus shuttle routing from classic TSP into a Multi-Objective Capacitated VRP, solved with GA to balance total distance against per-vehicle passenger capacity.' },
-    
     'card3-h': { th:'GeoAI ตรวจจับจุดความร้อนด้วย GEE + ML', en:'GeoAI Hotspot Detection with GEE + ML' },
     'card3-p': { th:'ดึงข้อมูลผ่าน Google Earth Engine → โมเดล ML → แดชบอร์ดบนเว็บ', en:'Data extraction via Google Earth Engine → ML model → Web dashboard.' },
     
     'card4-h': { th:'วัดขีดจำกัดของ Classical ML บนโจทย์ซูโดกุ', en:'Testing the Limits of Classical ML on Sudoku' },
     'card4-p': { th:'เปรียบเทียบ Random Forest, SVM และ k-NN บนโจทย์ซูโดกุ เพื่อตั้งเป็นเส้นฐานเชิงประจักษ์ก่อนต่อยอดสู่โมเดล Deep Learning', en:'Comparing Random Forest, SVM, and k-NN on Sudoku to establish an empirical baseline before moving to deep learning models.' },
-    
-    'card5-h': { th:'อธิบายการตัดสินใจของโมเดลด้วย SHAP และ Grad-CAM', en:'Explaining Model Decisions with SHAP and Grad-CAM' },
-    'card5-p': { th:'ตรวจสอบว่ากลยุทธ์การแก้ปัญหาของโมเดลสอดคล้องกับเทคนิคการแก้ซูโดกุของมนุษย์มากน้อยเพียงใด', en:"Examining how closely a model's problem-solving strategy aligns with human Sudoku-solving techniques." },
     
     'card6-h': { th:'ออกแบบเครือข่าย LoRaWAN และปรับปรุงประสิทธิภาพด้วย AI สำหรับติดตามรถบัสในมหาวิทยาลัย', en:'Designing a LoRaWAN Network and AI Optimization for University Bus Tracking' },
     'card6-p': { th:'ออกแบบเครือข่าย LoRaWAN สำหรับระบบติดตามรถรับส่งภายในมหาวิทยาลัย ส่วนหนึ่งของแนวคิด Smart Campus ที่ มก.ฉกส.', en:'Designed a LoRaWAN network for a university shuttle-tracking system, part of a broader smart-campus initiative.' },
