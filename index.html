@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prommin Buaphan — AI/ML Portfolio</title>
+<title>Prommin Buaphan — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -180,7 +180,7 @@
   .timeline-item h4{ margin:4px 0 6px; font-size: 16.5px; color: var(--ink); }
   .timeline-item p{ margin:0; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
 
-  .edu-card{ background: var(--surface); border:1px solid var(--line); border-radius: var(--radius-lg); padding: 22px 26px; display:flex; align-items:center; gap:18px; }
+  .edu-card{ background: var(--surface); border:1px solid var(--line); border-radius: var(--radius-lg); padding: 22px 26px; display:flex; align-items:center; gap:18px; margin-bottom:12px;}
   .edu-card .icon-badge{ width:44px; height:44px; background: var(--bg-soft); color: var(--indigo); flex-shrink:0; }
   .edu-card .icon-badge svg{ width:20px; height:20px; }
   .edu-card .edu-text strong{ display:block; font-size: 15.5px; color: var(--ink); margin-bottom:2px; }
@@ -291,16 +291,22 @@
   .skill-chips .chip{ background: var(--bg-soft); }
 
   /* ============ CONTACT / FOOTER ============ */
-  footer{ background: var(--indigo); color: #ECEEE2; padding: 72px 0 36px; }
+  footer{ background: var(--indigo); color: #ECEEE2; padding: 72px 0 48px; }
   footer h2{ color: #fff; font-size: 28px; margin-bottom: 14px; }
   footer p.lede{ color: #C7CCE0; max-width: 52ch; margin: 0 0 28px; font-size: 15.5px; }
-  .contact-links{ display:flex; flex-wrap:wrap; gap: 14px; margin-bottom: 48px; }
-  .contact-links a{
+  
+  .contact-block { display:flex; flex-direction: column; gap: 24px; margin-bottom: 48px; }
+  .contact-links { display:flex; flex-wrap:wrap; gap: 14px; }
+  .contact-links a {
     text-decoration:none; border: 1px solid rgba(255,255,255,0.25); padding: 11px 18px; border-radius: var(--radius);
     font-size: 14.5px; display:inline-flex; align-items:center; gap:8px; color: #fff; transition: background .15s ease, border-color .15s ease;
   }
-  .contact-links a:hover{ background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
-  .contact-links svg{ width:16px; height:16px; }
+  .contact-links a:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+  .contact-links svg { width:16px; height:16px; }
+  
+  .contact-address { display:flex; gap: 12px; color: #ECEEE2; font-size: 14.5px; align-items: flex-start; max-width: 60ch; line-height: 1.6; }
+  .contact-address svg { width:20px; height:20px; flex-shrink:0; margin-top:2px; color: var(--amber); }
+
   footer .foot-note{ border-top: 1px solid rgba(255,255,255,0.15); padding-top: 22px; font-size: 13px; color: #9AA2C4; display:flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
   .reveal{ opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
@@ -311,15 +317,14 @@
 
 <header class="site-nav">
   <div class="nav-inner">
-    <a class="logo" href="#home">AUN<span class="dot">.</span>AI</a>
+    <a class="logo" href="#home">Prommin Buaphan<span class="dot">.</span>AI</a>
     <div class="nav-right">
       <nav class="links">
-        <a href="#about" data-i18n="nav-about">เกี่ยวกับ</a>
-        <a href="#journey" data-i18n="nav-journey">เส้นทาง</a>
-        <a href="#projects" data-i18n="nav-projects">ผลงาน</a>
+        <a href="#about" data-i18n="nav-about">ประวัติ</a>
+        <a href="#projects" data-i18n="nav-projects">ผลงานและโครงงาน</a>
         <a href="#certificates" data-i18n="nav-certs">รางวัล</a>
         <a href="#skills" data-i18n="nav-skills">ทักษะ</a>
-        <a href="#contact" data-i18n="nav-contact">ติดต่อ</a>
+        <a href="#contact" data-i18n="nav-contact">ที่อยู่ติดต่อ</a>
       </nav>
       <div class="lang-toggle" role="group" aria-label="Language toggle">
         <button type="button" data-lang="th" class="active">TH</button>
@@ -329,28 +334,26 @@
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
 <section id="home" class="hero">
   <div class="container hero-grid-layout">
     <div>
-      <span class="eyebrow" data-i18n="hero-eyebrow">AI / ML Researcher · มก.ฉกส.</span>
-      <h1 data-i18n="hero-h1">ดูว่าโมเดลแต่ละแบบ<span class="accent"> "พัง" ตรงไหน</span> เมื่อกติกาเข้มงวดขึ้นทีละขั้น</h1>
+      <span class="eyebrow" data-i18n="hero-eyebrow"> · KU.CSC</span>
+      
       <p class="lede" data-i18n="hero-lede">
-        นักศึกษาปริญญาโท มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ สกลนคร
-        เปรียบเทียบสถาปัตยกรรม CNN, GNN และ Transformer บนโจทย์ซูโดกุอย่างเป็นระบบ
-        พร้อมประยุกต์การคำนวณเชิงวิวัฒนาการกับปัญหาเชิงผสมผสานในโลกจริง
+        นิสิตหลักสูตรวิศวกรรมคอมพิวเตอร์ ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์ คณะวิทยาศาสตร์และวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ สกลนคร
+        
       </p>
       <div class="cta-row">
-        <a href="#projects" class="btn btn-primary" data-i18n="cta-projects">ดูผลงานวิจัย</a>
-        <a href="#contact" class="btn btn-ghost" data-i18n="cta-contact">ติดต่อ</a>
+        <a href="#projects" class="btn btn-primary" data-i18n="cta-projects">ดูผลงานและโครงงาน</a>
+        <a href="#contact" class="btn btn-ghost" data-i18n="cta-contact">ที่อยู่ติดต่อ</a>
       </div>
 
       <div class="avatar-row">
-        <!-- แทนที่ src ด้านล่างด้วยรูปโปรไฟล์จริงของคุณ -->
         <img class="avatar" alt="รูปโปรไฟล์" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' rx='26' fill='%232B3B63'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dy='.1em' font-family='Space Grotesk, sans-serif' font-size='20' fill='%23F1F3EA'%3EA%3C/text%3E%3C/svg%3E">
         <div class="who">
           <strong>Prommin Buaphan</strong>
-          Master's Student — Comparative Deep Learning &amp; Evolutionary Computation
+          B.Eng. Student — Computer Engineering
+          Master's Student — Electrical and Computer Engineering
         </div>
       </div>
     </div>
@@ -373,101 +376,50 @@
   </div>
 </section>
 
-<!-- ============ ABOUT ============ -->
 <section id="about">
   <div class="container about-layout">
     <div>
-      <span class="eyebrow" data-i18n="about-eyebrow">เกี่ยวกับ</span>
-      <h2 data-i18n="about-h2">แนวทางการวิจัย</h2>
+      <span class="eyebrow" data-i18n="about-eyebrow">ประวัติส่วนตัว</span>
+      <h2 data-i18n="about-h2">ประวัติและแนวทางการวิจัย</h2>
     </div>
     <div class="about-body reveal">
       <p data-i18n="about-p1">
-        สนใจการเปรียบเทียบสถาปัตยกรรมโครงข่ายประสาทเทียมเชิงประจักษ์ — ไม่ใช่แค่ว่าโมเดลไหน "แม่นกว่า"
-        แต่คือ<strong>โมเดลไหนเสื่อมประสิทธิภาพช้าที่สุดเมื่อความซับซ้อนของปัญหาเพิ่มขึ้น</strong>
+        สนใจการเปรียบเทียบสถาปัตยกรรมโครงข่ายประสาทเทียม — <strong>โมเดลไหนเสื่อมประสิทธิภาพช้าที่สุดเมื่อความซับซ้อนของปัญหาเพิ่มขึ้น</strong>
         งานวิจัยหลักใช้ชุดข้อมูลซูโดกุที่เก็บเอง 5 ระดับความยาก เพื่อวิเคราะห์ per-difficulty degradation
         ข้ามสถาปัตยกรรม CNN, GNN และ Transformer ซึ่งเป็นช่องว่างที่งานวิจัยส่วนใหญ่ยังไม่ได้ศึกษาอย่างเป็นระบบ
       </p>
       <p data-i18n="about-p2">
         นอกเหนือจากงานวิทยานิพนธ์ ยังมีความสนใจต่อเนื่องด้าน<strong>การคำนวณเชิงวิวัฒนาการ</strong>
-        (Genetic Algorithm, NSGA-II) สำหรับปัญหาหลายวัตถุประสงค์ ตั้งแต่การออกแบบโจทย์ซูโดกุ
+        (Genetic Algorithm) สำหรับปัญหาหลายวัตถุประสงค์ ตั้งแต่การออกแบบโจทย์ซูโดกุ
         ไปจนถึงการวางเส้นทางรถรับส่งในมหาวิทยาลัยและระบบมหาวิทยาลัยอัจฉริยะ
       </p>
-      <p data-i18n="about-p3">
-        แนวทางการทำงานเน้น<strong>หลักฐานเชิงประจักษ์</strong>มากกว่าข้อสรุปเชิงทฤษฎีล้วน ๆ
-        ให้ความสำคัญกับความถูกต้องของกระบวนการทดลองทุกขั้นตอน และตรวจสอบแหล่งอ้างอิงอย่างละเอียดก่อนนำไปใช้
-      </p>
-
-      <div class="stat-row">
-        <div class="stat">
-          <span class="num">3</span>
-          <span class="label" data-i18n="stat-1">สถาปัตยกรรมที่เปรียบเทียบ<br>(CNN · GNN · Transformer)</span>
+      
+      <h3 data-i18n="edu-h3" style="margin-top: 32px; margin-bottom: 16px; font-size: 20px;">ประวัติการศึกษา</h3>
+      <div class="edu-card reveal">
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
         </div>
-        <div class="stat">
-          <span class="num">5</span>
-          <span class="label" data-i18n="stat-2">ระดับความยากของชุดข้อมูล<br>(Beginner → Expert)</span>
-        </div>
-        <div class="stat">
-          <span class="num">7+</span>
-          <span class="label" data-i18n="stat-3">โปรเจกต์วิจัย/พัฒนา<br>ที่เกี่ยวข้อง</span>
+        <div>
+          <div class="edu-text">
+            <strong data-i18n="edu-degree-bachelor">ปริญญาตรี — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)</strong>
+            <span data-i18n="edu-note-bachelor">หลักสูตร วศ.บ. วิศวกรรมคอมพิวเตอร์ · 2566 – ปัจจุบัน</span>
+            
+          </div>
+          <div class="edu-text">
+            <strong data-i18n="edu-degree-master">ปริญญาโท — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)</strong>
+            <span data-i18n="edu-note-master" style="display:block; margin-bottom:8px;">หลักสูตร วศ.ม. วิศวกรรมไฟฟ้าและคอมพิวเตอร์ · 2569 – ปัจจุบัน</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ JOURNEY / EDUCATION ============ -->
-<section id="journey">
-  <div class="container">
-    <div class="reveal">
-      <span class="eyebrow" data-i18n="journey-eyebrow">เส้นทาง</span>
-      <h2 data-i18n="journey-h2" style="font-size:30px; margin-top:12px;">เส้นทางงานวิจัยและการศึกษา</h2>
-      <p class="journey-intro" data-i18n="journey-intro">
-        ก่อนจะตกผลึกเป็นหัวข้อวิทยานิพนธ์ปัจจุบัน หัวข้องานวิจัยผ่านการสำรวจมาหลายแนวทาง —
-        แต่ละขั้นตอนคือบทเรียนที่ช่วยนิยามช่องว่างงานวิจัยให้ชัดเจนขึ้นเรื่อย ๆ
-      </p>
-    </div>
-
-    <div class="timeline reveal">
-      <div class="timeline-item">
-        <span class="ph">Phase 01</span>
-        <h4 data-i18n="tl1-h">เริ่มต้นด้วย Classical ML Benchmark</h4>
-        <p data-i18n="tl1-p">ทดสอบ Random Forest, SVM และ k-NN บนโจทย์ซูโดกุ เพื่อสร้างเส้นฐานเชิงประจักษ์ก่อนขยับสู่ Deep Learning</p>
-      </div>
-      <div class="timeline-item">
-        <span class="ph">Phase 02</span>
-        <h4 data-i18n="tl2-h">สำรวจแนวทาง Neuro-Symbolic AI</h4>
-        <p data-i18n="tl2-p">ทดลองรวม GNN เข้ากับ differentiable constraint layer แต่พบว่าแนวทางทับซ้อนกับงาน SATNet ที่มีอยู่แล้วมาก จึงปรับทิศทางใหม่</p>
-      </div>
-      <div class="timeline-item">
-        <span class="ph">Phase 03</span>
-        <h4 data-i18n="tl3-h">ปรับมุมมองด้วย Explainable AI</h4>
-        <p data-i18n="tl3-p">ใช้ SHAP และ Grad-CAM วัดว่ากลยุทธ์การแก้ปัญหาของโมเดลสอดคล้องกับเทคนิคการแก้ซูโดกุของมนุษย์มากน้อยเพียงใด</p>
-      </div>
-      <div class="timeline-item current">
-        <span class="ph">Phase 04 — Current</span>
-        <h4 data-i18n="tl4-h">ตกผลึกเป็นหัวข้อวิทยานิพนธ์ปัจจุบัน</h4>
-        <p data-i18n="tl4-p">ระบุช่องว่างจริง: ยังไม่มีการวิเคราะห์ per-difficulty degradation ข้ามสถาปัตยกรรม CNN, GNN และ Transformer อย่างเป็นระบบ — กลายเป็นหัวข้อวิทยานิพนธ์ปัจจุบัน ต่อยอดจาก Jana et al. (2025)</p>
-      </div>
-    </div>
-
-    <div class="edu-card reveal">
-      <div class="icon-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
-      </div>
-      <div class="edu-text">
-        <strong data-i18n="edu-degree">ปริญญาโท — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ สกลนคร (มก.ฉกส.)</strong>
-        <span data-i18n="edu-note">[ระบุสาขา] · [ปีที่เริ่ม] – ปัจจุบัน · วิทยานิพนธ์: การเปรียบเทียบ CNN, GNN และ Transformer สำหรับการแก้โจทย์ซูโดกุ</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROJECTS ============ -->
-<section id="projects">
+<section id="projects" style="background-color: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <span class="eyebrow" data-i18n="projects-eyebrow">ผลงาน</span>
+        <span class="eyebrow" data-i18n="projects-eyebrow">ผลงานและโครงงาน</span>
         <h2 data-i18n="projects-h2">งานวิจัยและโปรเจกต์</h2>
       </div>
       <p data-i18n="projects-sub">จากวิทยานิพนธ์หลักด้าน Deep Learning ไปจนถึงเครื่องมือออกแบบด้วยการคำนวณเชิงวิวัฒนาการ และงานประยุกต์กับปัญหาจริง</p>
@@ -500,60 +452,35 @@
         <div class="icon-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="6" r="2.6"/><circle cx="12" cy="18" r="2.6"/><path d="M8.2 7.6L10.5 15.5M15.8 7.6L13.5 15.5M8.6 6H15.4"/></svg>
         </div>
-        <h4 data-i18n="card1-h">ConstraintDesignerGA — ออกแบบโจทย์ซูโดกุด้วย NSGA-II</h4>
-        <p data-i18n="card1-p">เครื่องมือออกแบบโจทย์แบบหลายวัตถุประสงค์ด้วย NSGA-II ผ่าน DEAP แยก decode() ออกจาก fitness evaluation เป็น fast proxy และ exact evaluator พร้อม per-item RNG seeding ลด epistasis</p>
-        <div class="chip-row"><span class="chip">NSGA-II</span><span class="chip">DEAP</span><span class="chip">Genetic Algorithm</span></div>
+        <h4 data-i18n="card1-h">ConstraintDesignerGA — ออกแบบโจทย์ซูโดกุด้วย ILP+GA</h4>
+        <p data-i18n="card1-p">เครื่องมือออกแบบโจทย์แบบหลายวัตถุประสงค์ด้วย GA ผ่าน DEAP</p>
+        <div class="chip-row"><span class="chip">GA</span><span class="chip">DEAP</span><span class="chip">Genetic Algorithm</span></div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="icon-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l2-5h6l2 5h4"/><circle cx="7.5" cy="16" r="1.8"/><circle cx="16.5" cy="16" r="1.8"/><path d="M5.5 16h1.7M15 16h1.7"/></svg>
-        </div>
-        <h4 data-i18n="card2-h">ปรับเส้นทางรถรับส่งในมหาวิทยาลัยด้วย MO-CVRP</h4>
-        <p data-i18n="card2-p">จัดกรอบปัญหาใหม่จาก TSP ดั้งเดิม ให้เป็น Multi-Objective Capacitated VRP แล้วแก้ด้วย NSGA-II เพื่อสมดุลระยะทางรวมและความจุผู้โดยสารต่อคัน</p>
-        <div class="chip-row"><span class="chip">NSGA-II</span><span class="chip">VRP</span><span class="chip">Smart Campus</span></div>
-      </div>
+ 
 
       <div class="project-card reveal">
         <div class="icon-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c-4-2-7-6-7-10a7 7 0 0 1 14 0c0 4-3 8-7 10z"/><path d="M12 21V9"/></svg>
         </div>
-        <h4 data-i18n="card3-h">ประเมินการกักเก็บคาร์บอนในป่าเต็งรังด้วย GEE + ML</h4>
-        <p data-i18n="card3-p">ไปป์ไลน์ 4 ขั้นตอน: สำรวจภาคสนาม → ดึงข้อมูลผ่าน Google Earth Engine → โมเดล ML ประเมินคาร์บอน → แดชบอร์ดบนเว็บ</p>
+        <h4 data-i18n="card3-h">GeoAI ตรวจจับจุดความร้อนด้วย GEE + ML</h4>
+        <p data-i18n="card3-p">ดึงข้อมูลผ่าน Google Earth Engine → โมเดล ML → แดชบอร์ดบนเว็บ</p>
         <div class="chip-row"><span class="chip">Google Earth Engine</span><span class="chip">Remote Sensing</span></div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="icon-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V9M11 19V4M18 19v-7"/><line x1="3" y1="19" x2="21" y2="19"/></svg>
-        </div>
-        <h4 data-i18n="card4-h">วัดขีดจำกัดของ Classical ML บนโจทย์ซูโดกุ</h4>
-        <p data-i18n="card4-p">เปรียบเทียบ Random Forest, SVM และ k-NN บนโจทย์ซูโดกุ เพื่อตั้งเป็นเส้นฐานเชิงประจักษ์ก่อนต่อยอดสู่โมเดล Deep Learning</p>
-        <div class="chip-row"><span class="chip">Random Forest</span><span class="chip">SVM</span><span class="chip">k-NN</span></div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="icon-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg>
-        </div>
-        <h4 data-i18n="card5-h">อธิบายการตัดสินใจของโมเดลด้วย SHAP และ Grad-CAM</h4>
-        <p data-i18n="card5-p">ตรวจสอบว่ากลยุทธ์การแก้ปัญหาของโมเดลสอดคล้องกับเทคนิคการแก้ซูโดกุของมนุษย์มากน้อยเพียงใด</p>
-        <div class="chip-row"><span class="chip">SHAP</span><span class="chip">Grad-CAM</span><span class="chip">Explainable AI</span></div>
-      </div>
 
       <div class="project-card reveal">
         <div class="icon-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20v-6M8.5 17a5 5 0 0 1 0-8M15.5 17a5 5 0 0 0 0-8M5.5 20a9 9 0 0 1 0-14M18.5 20a9 9 0 0 0 0-14"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>
         </div>
-        <h4 data-i18n="card6-h">ออกแบบเครือข่าย LoRaWAN สำหรับติดตามรถบัสในมหาวิทยาลัย</h4>
-        <p data-i18n="card6-p">ออกแบบและจำลองเครือข่าย LoRaWAN ด้วย OMNeT++ สำหรับระบบติดตามรถรับส่งภายในมหาวิทยาลัย ส่วนหนึ่งของแนวคิด Smart Campus ที่ มก.ฉกส.</p>
+        <h4 data-i18n="card6-h">ออกแบบเครือข่าย LoRaWAN และปรับปรุงประสิทธิภาพด้วย AI สำหรับติดตามรถบัสในมหาวิทยาลัย</h4>
+        <p data-i18n="card6-p">ออกแบบเครือข่าย LoRaWAN สำหรับระบบติดตามรถรับส่งภายในมหาวิทยาลัย ส่วนหนึ่งของแนวคิด Smart Campus ที่ มก.ฉกส.</p>
         <div class="chip-row"><span class="chip">LoRaWAN</span><span class="chip">OMNeT++</span><span class="chip">IoT</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CERTIFICATES & AWARDS ============ -->
 <section id="certificates">
   <div class="container">
     <div class="section-head reveal">
@@ -565,7 +492,6 @@
     </div>
 
     <div class="cert-grid">
-      <!-- Cert 1: Super AI -->
       <div class="cert-card reveal">
         <img src="messageImage_1783605141437_0.jpg" alt="Super AI Engineer Season 5" loading="lazy">
         <div class="cert-info">
@@ -573,8 +499,6 @@
           <p data-i18n="cert1-p">Foundation AI (Theory) Level — Artificial Intelligence Association of Thailand</p>
         </div>
       </div>
-
-      <!-- Cert 2: Huawei / TPQI Page 1 -->
       <div class="cert-card reveal">
         <img src="messageImage_1783605110416_0.jpg" alt="TPQI Huawei Certificate" loading="lazy">
         <div class="cert-info">
@@ -583,8 +507,6 @@
           <span class="cert-id">ID: OSCN-0012/AI-000-0000-A-26/041008</span>
         </div>
       </div>
-
-      <!-- Cert 3: Huawei / TPQI Page 2 -->
       <div class="cert-card reveal">
         <img src="messageImage_1783605125128_0.jpg" alt="TPQI Huawei Certificate Details" loading="lazy">
         <div class="cert-info">
@@ -592,8 +514,6 @@
           <p data-i18n="cert3-p">Occupational Standard for AI Literacy Competencies</p>
         </div>
       </div>
-
-      <!-- Cert 4: KUSE AI Hackathon -->
       <div class="cert-card reveal">
         <img src="messageImage_1783605160078_0.jpg" alt="KUSE AI Hackathon 2025" loading="lazy">
         <div class="cert-info">
@@ -601,8 +521,6 @@
           <p data-i18n="cert4-p">KUSE AI Hackathon 2025 — Faculty of Science and Engineering, Kasetsart University</p>
         </div>
       </div>
-
-      <!-- Cert 5: KU AIdeation Challenge -->
       <div class="cert-card reveal">
         <img src="messageImage_1783605150378_0.jpg" alt="KU AIdeation Challenge 2024" loading="lazy">
         <div class="cert-info">
@@ -614,126 +532,8 @@
   </div>
 </section>
 
-<!-- ============ GALLERY ============ -->
-<section id="gallery">
-  <div class="container">
-    <div class="section-head reveal" style="margin-bottom:16px;">
-      <div>
-        <span class="eyebrow" data-i18n="gallery-eyebrow">ภาพประกอบ</span>
-        <h2 data-i18n="gallery-h2">ตัวอย่างผลลัพธ์งานวิจัย</h2>
-      </div>
-    </div>
-    <p class="gallery-intro reveal" data-i18n="gallery-intro">
-      ภาพด้านล่างเป็นภาพประกอบตัวอย่าง (mockup) ใช้แสดงรูปแบบการนำเสนอผลเท่านั้น — โปรดแทนที่ด้วยกราฟและผลลัพธ์จริงจากการทดลองของคุณก่อนเผยแพร่
-    </p>
 
-    <div class="gallery-grid">
-      <!-- Chart 1: per-difficulty degradation -->
-      <div class="gallery-card reveal">
-        <span class="badge-mockup" data-i18n="badge-mockup">ภาพประกอบ</span>
-        <svg viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg">
-          <line x1="46" y1="20" x2="46" y2="180" stroke="#CBD3BE" stroke-width="1.5"/>
-          <line x1="46" y1="180" x2="360" y2="180" stroke="#CBD3BE" stroke-width="1.5"/>
-          <polyline points="60,45 130,58 200,78 270,105 340,120" fill="none" stroke="#2B3B63" stroke-width="2.4"/>
-          <polyline points="60,52 130,72 200,100 270,132 340,155" fill="none" stroke="#DFA23B" stroke-width="2.4"/>
-          <polyline points="60,60 130,95 200,128 270,150 340,168" fill="none" stroke="#C1543A" stroke-width="2.4"/>
-          <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#7C8A75">
-            <text x="52" y="196">Beginner</text>
-            <text x="200" y="196" text-anchor="middle">Medium</text>
-            <text x="330" y="196" text-anchor="end">Expert</text>
-            <text x="20" y="26" transform="rotate(-90 20,26)">Accuracy</text>
-          </g>
-          <g font-family="IBM Plex Mono, monospace" font-size="10">
-            <circle cx="230" cy="14" r="3.5" fill="#2B3B63"/><text x="238" y="17.5" fill="#52604F">CNN</text>
-            <circle cx="280" cy="14" r="3.5" fill="#DFA23B"/><text x="288" y="17.5" fill="#52604F">GNN</text>
-            <circle cx="330" cy="14" r="3.5" fill="#C1543A"/><text x="338" y="17.5" fill="#52604F">Trf.</text>
-          </g>
-        </svg>
-        <p class="cap-text" data-i18n="gal1-cap">ตัวอย่าง: ความแม่นยำต่อระดับความยาก (CNN vs GNN vs Transformer)</p>
-      </div>
-
-      <!-- Chart 2: NSGA-II Pareto front -->
-      <div class="gallery-card reveal">
-        <span class="badge-mockup" data-i18n="badge-mockup">ภาพประกอบ</span>
-        <svg viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg">
-          <line x1="46" y1="20" x2="46" y2="180" stroke="#CBD3BE" stroke-width="1.5"/>
-          <line x1="46" y1="180" x2="360" y2="180" stroke="#CBD3BE" stroke-width="1.5"/>
-          <g fill="#CBD3BE">
-            <circle cx="120" cy="120" r="3.5"/><circle cx="160" cy="150" r="3.5"/><circle cx="200" cy="60" r="3.5"/>
-            <circle cx="240" cy="145" r="3.5"/><circle cx="280" cy="90" r="3.5"/><circle cx="150" cy="90" r="3.5"/>
-          </g>
-          <polyline points="70,45 100,58 140,78 190,102 250,130 320,158" fill="none" stroke="#2B3B63" stroke-width="2" stroke-dasharray="0"/>
-          <g fill="#DFA23B" stroke="#fff" stroke-width="1">
-            <circle cx="70" cy="45" r="4.5"/><circle cx="100" cy="58" r="4.5"/><circle cx="140" cy="78" r="4.5"/>
-            <circle cx="190" cy="102" r="4.5"/><circle cx="250" cy="130" r="4.5"/><circle cx="320" cy="158" r="4.5"/>
-          </g>
-          <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#7C8A75">
-            <text x="200" y="196" text-anchor="middle">Objective 1</text>
-            <text x="20" y="26" transform="rotate(-90 20,26)">Objective 2</text>
-          </g>
-          <text x="325" y="150" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6B4E14">Pareto</text>
-        </svg>
-        <p class="cap-text" data-i18n="gal2-cap">ตัวอย่าง: Pareto Front จาก ConstraintDesignerGA (NSGA-II)</p>
-      </div>
-
-      <!-- Chart 3: strategy alignment bar chart -->
-      <div class="gallery-card reveal">
-        <span class="badge-mockup" data-i18n="badge-mockup">ภาพประกอบ</span>
-        <svg viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg">
-          <line x1="110" y1="16" x2="110" y2="196" stroke="#CBD3BE" stroke-width="1.5"/>
-          <g font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="#52604F">
-            <text x="104" y="45" text-anchor="end">Row Scan</text>
-            <text x="104" y="89" text-anchor="end">Elimination</text>
-            <text x="104" y="133" text-anchor="end">Pattern</text>
-            <text x="104" y="177" text-anchor="end">Backtrack</text>
-          </g>
-          <g>
-            <rect x="112" y="32" width="150" height="12" fill="#2B3B63"/>
-            <rect x="112" y="48" width="120" height="12" fill="#DFA23B"/>
-            <rect x="112" y="76" width="190" height="12" fill="#2B3B63"/>
-            <rect x="112" y="92" width="170" height="12" fill="#DFA23B"/>
-            <rect x="112" y="120" width="90" height="12" fill="#2B3B63"/>
-            <rect x="112" y="136" width="140" height="12" fill="#DFA23B"/>
-            <rect x="112" y="164" width="200" height="12" fill="#2B3B63"/>
-            <rect x="112" y="180" width="70" height="12" fill="#DFA23B"/>
-          </g>
-          <g font-family="IBM Plex Mono, monospace" font-size="10">
-            <circle cx="280" cy="12" r="3.5" fill="#2B3B63"/><text x="288" y="15.5" fill="#52604F" data-i18n-inline="model">Model</text>
-            <circle cx="335" cy="12" r="3.5" fill="#DFA23B"/><text x="343" y="15.5" fill="#52604F" data-i18n-inline="human">Human</text>
-          </g>
-        </svg>
-        <p class="cap-text" data-i18n="gal3-cap">ตัวอย่าง: ความสอดคล้องกลยุทธ์โมเดล–มนุษย์ (SHAP/Grad-CAM)</p>
-      </div>
-
-      <!-- Chart 4: VRP route map -->
-      <div class="gallery-card reveal">
-        <span class="badge-mockup" data-i18n="badge-mockup">ภาพประกอบ</span>
-        <svg viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg">
-          <rect x="170" y="94" width="20" height="20" fill="#16231B"/>
-          <g stroke="#2B3B63" stroke-width="2" fill="none">
-            <path d="M180 104 L90 60 L60 130 L180 104"/>
-          </g>
-          <g stroke="#DFA23B" stroke-width="2" fill="none">
-            <path d="M180 104 L260 50 L320 90 L180 104"/>
-          </g>
-          <g stroke="#6FA287" stroke-width="2" fill="none">
-            <path d="M180 104 L140 175 L250 185 L180 104"/>
-          </g>
-          <g fill="#52604F">
-            <circle cx="90" cy="60" r="5"/><circle cx="60" cy="130" r="5"/>
-            <circle cx="260" cy="50" r="5"/><circle cx="320" cy="90" r="5"/>
-            <circle cx="140" cy="175" r="5"/><circle cx="250" cy="185" r="5"/>
-          </g>
-          <text x="180" y="128" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#16231B" data-i18n-inline="depot">Depot</text>
-        </svg>
-        <p class="cap-text" data-i18n="gal4-cap">ตัวอย่าง: เส้นทางที่ได้จากการแก้ปัญหา MO-CVRP</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SKILLS ============ -->
-<section id="skills">
+<section id="skills" style="padding-top: 0;">
   <div class="container">
     <div class="section-head reveal">
       <div>
@@ -763,27 +563,35 @@
   </div>
 </section>
 
-<!-- ============ CONTACT / FOOTER ============ -->
 <footer id="contact">
   <div class="container">
-    <span class="eyebrow" style="color:#AEB6E0;" data-i18n="contact-eyebrow">ติดต่อ</span>
+    <span class="eyebrow" style="color:#AEB6E0;" data-i18n="contact-eyebrow">ที่อยู่ติดต่อ</span>
     <h2 data-i18n="contact-h2">สนใจร่วมงานวิจัยหรือพูดคุยเรื่องโปรเจกต์?</h2>
-    <p class="lede" data-i18n="contact-lede">เปิดรับการพูดคุยเรื่องงานวิจัย ความร่วมมือ หรือโอกาสด้าน AI/ML — ส่งข้อความมาได้เลย</p>
+    <p class="lede" data-i18n="contact-lede">เปิดรับการพูดคุยเรื่องงานวิจัย ความร่วมมือ หรือโอกาสด้าน AI/ML — ส่งข้อความหรือติดต่อผ่านช่องทางด้านล่างได้เลยครับ</p>
 
-    <div class="contact-links">
-      <!-- แก้ไขลิงก์ด้านล่างให้เป็นข้อมูลติดต่อจริงของคุณ -->
-      <a href="mailto:your-email@ku.th">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-        your-email@ku.th
-      </a>
-      <a href="https://github.com/your-username" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a10 10 0 0 0-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.69 0 3.85-2.35 4.7-4.58 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
-        github.com/your-username
-      </a>
-      <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="11" x2="8" y2="16"/><circle cx="8" cy="8" r="0.6" fill="currentColor"/><path d="M12 16v-3.2c0-1.4 1-2.3 2.2-2.3 1.2 0 1.8.9 1.8 2.3V16"/></svg>
-        linkedin.com/in/your-profile
-      </a>
+    <div class="contact-block">
+      <div class="contact-links">
+        <a href="mailto:prommin.b@ku.th">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          prommin.b@ku.th
+        </a>
+        <a href="tel:+66837735493">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-i18n="contact-phone">083-773-5493</span>
+        </a>
+        <a href="https://github.com/andrewillerr" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a10 10 0 0 0-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.69 0 3.85-2.35 4.7-4.58 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+          github.com/andrewillerr
+        </a>
+      </div>
+
+      <div class="contact-address">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span data-i18n="contact-address">
+          มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร<br>
+          59 หมู่ 1 ถ.วปรอ 366 ตำบลเชียงเครือ อำเภอเมือง จังหวัดสกลนคร 47000
+        </span>
+      </div>
     </div>
 
     <div class="foot-note">
@@ -845,14 +653,14 @@
 
   /* ============ TH / EN TOGGLE ============ */
   var dict = {
-    'nav-about':    { th:'เกี่ยวกับ', en:'About' },
-    'nav-journey':  { th:'เส้นทาง', en:'Journey' },
-    'nav-projects': { th:'ผลงาน', en:'Projects' },
+    /* เมนูนำทางอัปเดตตามคีย์เวิร์ดที่ต้องการ */
+    'nav-about':    { th:'ประวัติ', en:'Profile' },
+    'nav-projects': { th:'ผลงานและโครงงาน', en:'Works & Projects' },
     'nav-certs':    { th:'รางวัล', en:'Awards' },
     'nav-skills':   { th:'ทักษะ', en:'Skills' },
-    'nav-contact':  { th:'ติดต่อ', en:'Contact' },
+    'nav-contact':  { th:'ที่อยู่ติดต่อ', en:'Contact Info' },
 
-    'hero-eyebrow': { th:'AI / ML Researcher · มก.ฉกส.', en:'AI / ML Researcher · Kasetsart University' },
+    'hero-eyebrow': { th:'AI / ML · มก.ฉกส.', en:'AI / ML · Kasetsart University' },
     'hero-h1': {
       th:'ดูว่าโมเดลแต่ละแบบ<span class="accent"> "พัง" ตรงไหน</span> เมื่อกติกาเข้มงวดขึ้นทีละขั้น',
       en:'Finding out where each model <span class="accent">breaks down</span> as the constraints get tighter'
@@ -861,11 +669,11 @@
       th:'นักศึกษาปริญญาโท มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ สกลนคร เปรียบเทียบสถาปัตยกรรม CNN, GNN และ Transformer บนโจทย์ซูโดกุอย่างเป็นระบบ พร้อมประยุกต์การคำนวณเชิงวิวัฒนาการกับปัญหาเชิงผสมผสานในโลกจริง',
       en:"Master's student at Kasetsart University, Chalermphrakiat Sakon Nakhon Campus. Systematically comparing CNN, GNN, and Transformer architectures on Sudoku-solving tasks, alongside applying evolutionary computation to real-world combinatorial problems."
     },
-    'cta-projects': { th:'ดูผลงานวิจัย', en:'View Research' },
-    'cta-contact':  { th:'ติดต่อ', en:'Contact' },
+    'cta-projects': { th:'ดูผลงานและโครงงาน', en:'View Works & Projects' },
+    'cta-contact':  { th:'ที่อยู่ติดต่อ', en:'Contact Info' },
 
-    'about-eyebrow': { th:'เกี่ยวกับ', en:'About' },
-    'about-h2': { th:'แนวทางการวิจัย', en:'Research Approach' },
+    'about-eyebrow': { th:'ประวัติส่วนตัว', en:'Profile' },
+    'about-h2': { th:'ประวัติและแนวทางการวิจัย', en:'Profile & Research Approach' },
     'about-p1': {
       th:'สนใจการเปรียบเทียบสถาปัตยกรรมโครงข่ายประสาทเทียมเชิงประจักษ์ — ไม่ใช่แค่ว่าโมเดลไหน "แม่นกว่า" แต่คือ<strong>โมเดลไหนเสื่อมประสิทธิภาพช้าที่สุดเมื่อความซับซ้อนของปัญหาเพิ่มขึ้น</strong> งานวิจัยหลักใช้ชุดข้อมูลซูโดกุที่เก็บเอง 5 ระดับความยาก เพื่อวิเคราะห์ per-difficulty degradation ข้ามสถาปัตยกรรม CNN, GNN และ Transformer ซึ่งเป็นช่องว่างที่งานวิจัยส่วนใหญ่ยังไม่ได้ศึกษาอย่างเป็นระบบ',
       en:"Focused on empirical comparison of neural network architectures — not just which model is 'more accurate,' but <strong>which one degrades the slowest as problem complexity increases</strong>. The core thesis uses a self-collected Sudoku dataset spanning five difficulty levels to analyze per-difficulty degradation across CNN, GNN, and Transformer architectures — a gap most existing research hasn't studied systematically."
@@ -874,32 +682,14 @@
       th:'นอกเหนือจากงานวิทยานิพนธ์ ยังมีความสนใจต่อเนื่องด้าน<strong>การคำนวณเชิงวิวัฒนาการ</strong> (Genetic Algorithm, NSGA-II) สำหรับปัญหาหลายวัตถุประสงค์ ตั้งแต่การออกแบบโจทย์ซูโดกุ ไปจนถึงการวางเส้นทางรถรับส่งในมหาวิทยาลัยและระบบมหาวิทยาลัยอัจฉริยะ',
       en:"Beyond the thesis, there's an ongoing interest in <strong>evolutionary computation</strong> (Genetic Algorithms, NSGA-II) for multi-objective problems — from designing Sudoku puzzle variants to routing university shuttle buses and building smart-campus systems."
     },
-    'about-p3': {
-      th:'แนวทางการทำงานเน้น<strong>หลักฐานเชิงประจักษ์</strong>มากกว่าข้อสรุปเชิงทฤษฎีล้วน ๆ ให้ความสำคัญกับความถูกต้องของกระบวนการทดลองทุกขั้นตอน และตรวจสอบแหล่งอ้างอิงอย่างละเอียดก่อนนำไปใช้',
-      en:'The approach favors <strong>empirical evidence</strong> over purely theoretical conclusions, with close attention to experimental rigor at every step and careful verification of sources before citing them.'
-    },
-    'stat-1': { th:'สถาปัตยกรรมที่เปรียบเทียบ<br>(CNN · GNN · Transformer)', en:'Architectures Compared<br>(CNN · GNN · Transformer)' },
-    'stat-2': { th:'ระดับความยากของชุดข้อมูล<br>(Beginner → Expert)', en:'Dataset Difficulty Levels<br>(Beginner → Expert)' },
-    'stat-3': { th:'โปรเจกต์วิจัย/พัฒนา<br>ที่เกี่ยวข้อง', en:'Related Research /<br>Dev Projects' },
+    'edu-h3': { th:'ประวัติการศึกษา', en:'Education' },
+    'edu-degree-bachelor': { th:'ปริญญาตรี — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)', en:"Bachelor's Degree — Kasetsart University, Chalermphrakiat Sakon Nakhon Campus" },
+    'edu-note-bachelor': { th:'หลักสูตร วศ.บ. วิศวกรรมคอมพิวเตอร์ · 2566 – ปัจจุบัน', en:'Bachelor of Engineering (Computer Engineering) · 2023 – Present' },
+    'edu-degree-master': { th:'ปริญญาโท — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)', en:"Master's Degree — Kasetsart University, Chalermphrakiat Sakon Nakhon Campus" },
+    'edu-note-master': { th:'หลักสูตร วศ.ม. วิศวกรรมไฟฟ้าและคอมพิวเตอร์ · 2569 – ปัจจุบัน', en:'Master of Engineering (Electrical and Computer Engineering) · 2026 – Present' },
+    
 
-    'journey-eyebrow': { th:'เส้นทาง', en:'Journey' },
-    'journey-h2': { th:'เส้นทางงานวิจัยและการศึกษา', en:'Research Journey & Education' },
-    'journey-intro': {
-      th:'ก่อนจะตกผลึกเป็นหัวข้อวิทยานิพนธ์ปัจจุบัน หัวข้องานวิจัยผ่านการสำรวจมาหลายแนวทาง — แต่ละขั้นตอนคือบทเรียนที่ช่วยนิยามช่องว่างงานวิจัยให้ชัดเจนขึ้นเรื่อย ๆ',
-      en:'Before settling on the current thesis direction, the research went through several framings — each one a lesson that sharpened the definition of the actual gap being addressed.'
-    },
-    'tl1-h': { th:'เริ่มต้นด้วย Classical ML Benchmark', en:'Started with a Classical ML Benchmark' },
-    'tl1-p': { th:'ทดสอบ Random Forest, SVM และ k-NN บนโจทย์ซูโดกุ เพื่อสร้างเส้นฐานเชิงประจักษ์ก่อนขยับสู่ Deep Learning', en:'Tested Random Forest, SVM, and k-NN on Sudoku to establish an empirical baseline before moving to deep learning.' },
-    'tl2-h': { th:'สำรวจแนวทาง Neuro-Symbolic AI', en:'Explored a Neuro-Symbolic AI Direction' },
-    'tl2-p': { th:'ทดลองรวม GNN เข้ากับ differentiable constraint layer แต่พบว่าแนวทางทับซ้อนกับงาน SATNet ที่มีอยู่แล้วมาก จึงปรับทิศทางใหม่', en:'Combined a GNN with a differentiable constraint layer, but found significant overlap with existing SATNet-style work — leading to a pivot.' },
-    'tl3-h': { th:'ปรับมุมมองด้วย Explainable AI', en:'Reframed Through Explainable AI' },
-    'tl3-p': { th:'ใช้ SHAP และ Grad-CAM วัดว่ากลยุทธ์การแก้ปัญหาของโมเดลสอดคล้องกับเทคนิคการแก้ซูโดกุของมนุษย์มากน้อยเพียงใด', en:'Used SHAP and Grad-CAM to measure how closely model problem-solving strategies aligned with human Sudoku-solving techniques.' },
-    'tl4-h': { th:'ตกผลึกเป็นหัวข้อวิทยานิพนธ์ปัจจุบัน', en:'Converged on the Current Thesis' },
-    'tl4-p': { th:'ระบุช่องว่างจริง: ยังไม่มีการวิเคราะห์ per-difficulty degradation ข้ามสถาปัตยกรรม CNN, GNN และ Transformer อย่างเป็นระบบ — กลายเป็นหัวข้อวิทยานิพนธ์ปัจจุบัน ต่อยอดจาก Jana et al. (2025)', en:'Identified the real gap: no systematic per-difficulty degradation analysis existed across CNN, GNN, and Transformer architectures — becoming the current thesis, extending Jana et al. (2025).' },
-    'edu-degree': { th:'ปริญญาโท — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ สกลนคร (มก.ฉกส.)', en:"Master's Degree — Kasetsart University, Chalermphrakiat Sakon Nakhon Campus" },
-    'edu-note': { th:'[ระบุสาขา] · [ปีที่เริ่ม] – ปัจจุบัน · วิทยานิพนธ์: การเปรียบเทียบ CNN, GNN และ Transformer สำหรับการแก้โจทย์ซูโดกุ', en:'[Program name] · [Start year] – Present · Thesis: Comparing CNN, GNN, and Transformer Architectures for Sudoku Solving' },
-
-    'projects-eyebrow': { th:'ผลงาน', en:'Projects' },
+    'projects-eyebrow': { th:'ผลงานและโครงงาน', en:'Works & Projects' },
     'projects-h2': { th:'งานวิจัยและโปรเจกต์', en:'Research & Projects' },
     'projects-sub': { th:'จากวิทยานิพนธ์หลักด้าน Deep Learning ไปจนถึงเครื่องมือออกแบบด้วยการคำนวณเชิงวิวัฒนาการ และงานประยุกต์กับปัญหาจริง', en:'From the core Deep Learning thesis to tools built with evolutionary computation, and applications to real-world problems.' },
 
@@ -943,22 +733,27 @@
     'cert5-h': { th:'Finalist: Certificate of Achievement', en:'Finalist: Certificate of Achievement' },
     'cert5-p': { th:'KU AIdeation Challenge 2024 — Kasetsart University &amp; SEAMEO STEM-ED', en:'KU AIdeation Challenge 2024 — Kasetsart University &amp; SEAMEO STEM-ED' },
 
-    'gallery-eyebrow': { th:'ภาพประกอบ', en:'Visuals' },
-    'gallery-h2': { th:'ตัวอย่างผลลัพธ์งานวิจัย', en:'Sample Research Visuals' },
-    'gallery-intro': { th:'ภาพด้านล่างเป็นภาพประกอบตัวอย่าง (mockup) ใช้แสดงรูปแบบการนำเสนอผลเท่านั้น — โปรดแทนที่ด้วยกราฟและผลลัพธ์จริงจากการทดลองของคุณก่อนเผยแพร่', en:'The figures below are placeholder mockups showing how results could be presented — replace them with your actual experiment outputs before publishing.' },
-    'badge-mockup': { th:'ภาพประกอบ', en:'Mockup' },
-    'gal1-cap': { th:'ตัวอย่าง: ความแม่นยำต่อระดับความยาก (CNN vs GNN vs Transformer)', en:'Example: Accuracy per Difficulty Level (CNN vs GNN vs Transformer)' },
-    'gal2-cap': { th:'ตัวอย่าง: Pareto Front จาก ConstraintDesignerGA (NSGA-II)', en:'Example: Pareto Front from ConstraintDesignerGA (NSGA-II)' },
-    'gal3-cap': { th:'ตัวอย่าง: ความสอดคล้องกลยุทธ์โมเดล–มนุษย์ (SHAP/Grad-CAM)', en:'Example: Model–Human Strategy Alignment (SHAP/Grad-CAM)' },
-    'gal4-cap': { th:'ตัวอย่าง: เส้นทางที่ได้จากการแก้ปัญหา MO-CVRP', en:'Example: Routes from the MO-CVRP Solution' },
+    // 'gallery-eyebrow': { th:'ภาพประกอบ', en:'Visuals' },
+    // 'gallery-h2': { th:'ตัวอย่างผลลัพธ์งานวิจัย', en:'Sample Research Visuals' },
+    // 'gallery-intro': { th:'ภาพด้านล่างเป็นภาพประกอบตัวอย่าง (mockup) ใช้แสดงรูปแบบการนำเสนอผลเท่านั้น — โปรดแทนที่ด้วยกราฟและผลลัพธ์จริงจากการทดลองของคุณก่อนเผยแพร่', en:'The figures below are placeholder mockups showing how results could be presented — replace them with your actual experiment outputs before publishing.' },
+    // 'badge-mockup': { th:'ภาพประกอบ', en:'Mockup' },
+    // 'gal1-cap': { th:'ตัวอย่าง: ความแม่นยำต่อระดับความยาก (CNN vs GNN vs Transformer)', en:'Example: Accuracy per Difficulty Level (CNN vs GNN vs Transformer)' },
+    // 'gal2-cap': { th:'ตัวอย่าง: Pareto Front จาก ConstraintDesignerGA (NSGA-II)', en:'Example: Pareto Front from ConstraintDesignerGA (NSGA-II)' },
+    // 'gal3-cap': { th:'ตัวอย่าง: ความสอดคล้องกลยุทธ์โมเดล–มนุษย์ (SHAP/Grad-CAM)', en:'Example: Model–Human Strategy Alignment (SHAP/Grad-CAM)' },
+    // 'gal4-cap': { th:'ตัวอย่าง: เส้นทางที่ได้จากการแก้ปัญหา MO-CVRP', en:'Example: Routes from the MO-CVRP Solution' },
 
     'skills-eyebrow': { th:'ทักษะ', en:'Skills' },
     'skills-h2': { th:'ทักษะ &amp; เครื่องมือ', en:'Skills &amp; Tools' },
     'skillgroup4-cap': { th:'เครื่องมือ &amp; แพลตฟอร์ม', en:'Tools &amp; Platforms' },
 
-    'contact-eyebrow': { th:'ติดต่อ', en:'Contact' },
+    'contact-eyebrow': { th:'ที่อยู่ติดต่อ', en:'Contact Info' },
     'contact-h2': { th:'สนใจร่วมงานวิจัยหรือพูดคุยเรื่องโปรเจกต์?', en:'Interested in collaborating or discussing a project?' },
-    'contact-lede': { th:'เปิดรับการพูดคุยเรื่องงานวิจัย ความร่วมมือ หรือโอกาสด้าน AI/ML — ส่งข้อความมาได้เลย', en:'Open to conversations about research, collaboration, or AI/ML opportunities — feel free to reach out.' }
+    'contact-lede': { th:'เปิดรับการพูดคุยเรื่องงานวิจัย ความร่วมมือ หรือโอกาสด้าน AI/ML — ส่งข้อความหรือติดต่อผ่านช่องทางด้านล่างได้เลยครับ', en:'Open to conversations about research, collaboration, or AI/ML opportunities — feel free to reach out via the channels below.' },
+    'contact-phone': { th:'083-773-5493', en:'+66 83-773-5493' },
+    'contact-address': { 
+      th:'มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร<br>59 หมู่ 1 ถ.วปรอ 366 ตำบลเชียงเครือ อำเภอเมือง จังหวัดสกลนคร 47000', 
+      en:'Kasetsart University, Chalermphrakiat Sakon Nakhon Province Campus<br>59 Moo 1, Vor Por Ror Or 366 Rd., Chiang Khruea, Mueang, Sakon Nakhon 47000' 
+    }
   };
 
   function applyLang(lang){
