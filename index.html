@@ -331,16 +331,24 @@
   }
   .cert-media-thumbs {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* 1. บังคับให้อยู่บรรทัดเดียว */
     gap: 8px;
+    overflow-x: auto; /* 2. ให้สามารถเลื่อนซ้าย-ขวาได้ */
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch; /* เลื่อนลื่นๆ บนมือถือ */
+    scrollbar-width: none; /* ซ่อนแถบเลื่อนใน Firefox */
+  }
+  .cert-media-thumbs::-webkit-scrollbar {
+    display: none; /* ซ่อนแถบเลื่อนใน Chrome/Safari ให้ดูคลีน */
   }
   .thumb-btn {
+    flex-shrink: 0; /* 3. ป้องกันไม่ให้รูปถูกบีบให้แคบลงเมื่อมีหลายรูป */
     border: 1px solid var(--line);
-    border-radius: 10px;
+    border-radius: 6px; /* ปรับขอบไม่ให้โค้งจนเกินไป (จาก 10px เป็น 6px) */
     padding: 0;
     overflow: hidden;
-    width: 56px;
-    height: 42px;
+    width: 52px; /* ปรับขนาดให้พอดีขึ้น */
+    height: 40px;
     background: var(--surface);
     cursor: pointer;
     transition: border-color 0.2s ease, transform 0.2s ease;
@@ -1007,8 +1015,8 @@
     </div>
 
     <div class="cert-grid" id="activities-grid">
-      <div class="cert-card reveal" data-category="research" data-images="width_533.jpg,width_1600.jpg,ieecon1.jpg">
-        <img src="width_533.jpg,width_1600.jpg,ieecon1.jpg" alt="iEECON2026 Conference" loading="lazy">
+      <div class="cert-card reveal" data-category="research" data-images="width_1600.jpg,width_533.jpg,ieecon1.jpg">
+        <img src="width_1600.jpg,width_533.jpg,ieecon1.jpg" alt="iEECON2026 Conference" loading="lazy">
         <div class="cert-info">
          <a class="cert-link" href="https://kuse.csc.ku.ac.th/article/2656" target="_blank" rel="noopener noreferrer">
           <h4 data-i18n="act1-h">iEECON2026 International Conference</h4>
@@ -1017,8 +1025,8 @@
         </div>
       </div>
       
-      <div class="cert-card reveal" data-category="competition" data-images="kuseAI1.jpg,kuseAI2.jpg,kuseAI3.jpg">
-        <img src="kuseAI1.jpg,kuseAI2.jpg,kuseAI3.jpg" alt="KUSE AI Hackathon Vibe" loading="lazy">
+      <div class="cert-card reveal" data-category="competition" data-images="kuseAI2.jpg,kuseAI1.jpg,kuseAI3.jpg">
+        <img src="kuseAI2.jpg,kuseAI1.jpg,kuseAI3.jpg" alt="KUSE AI Hackathon Vibe" loading="lazy">
         <div class="cert-info">
           <a class="cert-link" href="https://kuse.csc.ku.ac.th/article/2332" target="_blank" rel="noopener noreferrer">
             <h4 data-i18n="act2-h">KUSE AI Hackathon 2025</h4>
@@ -1027,15 +1035,15 @@
         </div>
       </div>
 
-      <div class="cert-card reveal" data-category="competition" data-images="width_1080.jpg,width_600 (1).jpg">
-        <img src="width_1080.jpg,width_600 (1).jpg" alt="inewgen202401" loading="lazy">
+      <div class="cert-card reveal" data-category="competition" data-images="width_1080.jpg,width_600 (1).jpg,width_600.jpg,width_960 (1).jpg,width_960.jpg,width_636.jpg">
+        <img src="width_1080.jpg,width_600 (1).jpg,width_600.jpg,width_960 (1).jpg,width_960.jpg,width_636.jpg" alt="inewgen202401" loading="lazy">
         <div class="cert-info">
           <h4 data-i18n="act3-h">I NEW GEN 2024</h4>
           <p data-i18n="act3-p">ออกบูธแสดงผลงาน การพัฒนาระบบความร้อนในร้องเท้าเพื่อแก้ปัญหากลิ่นอับ</p>
         </div>
       </div>
-      <div class="cert-card reveal" data-category="competition" data-images="width_1567.jpg">
-        <img src="width_1567.jpg" alt="Geartalent" loading="lazy">
+      <div class="cert-card reveal" data-category="competition" data-images="width_940.png,width_1567.jpg">
+        <img src="width_940.png,width_1567.jpg" alt="Geartalent" loading="lazy">
         <div class="cert-info">
           <h4 data-i18n="act4-h">Gear Talent Bronze Award: Smart Bus System for Rural Areas</h4>
           <p data-i18n="cert19-p">คณะวิศวกรรมศาสตร์ ม.มหิดล ร่วมกับ สภาคณบดีแห่งประเทศไทย และสหพันธ์นิสิตนักศึกษาวิศวกรรมศาสตร์ แห่งประเทศไทย (สนวท.) จัดโครงการ “Gear Talent” การแข่งขันทางด้านวิชาการ และนวัตกรรมสมัยใหม่ ประจำปีการศึกษา 2566</p>
@@ -1050,8 +1058,8 @@
           <p data-i18n="cert19-p">ประยุกต์ใช้หลักการ STEAM4INNOVATOR กับสมาชิกชุมนุมนวัตกรรุ่นเยาว์ สโมสรนิสิตคณะวิทยาศาสตร์และวิศวกรรมศาสตร์ คณะวิทยาศาสตร์และวิศวกรรมศาสตร์</p>
         </div>
       </div>
-      <div class="cert-card reveal" data-category="competition" data-images="Fested1.jpg,width_1600 (5).png,width_1600 (7).jpg,width_1600 (6).jpg,width_1080 (8).jpg">
-        <img src="Fested1.jpg,width_1600 (5).png,width_1600 (7).jpg,width_1600 (6).jpg,width_1080 (8).jpg" alt="Geartalent" loading="lazy">
+      <div class="cert-card reveal" data-category="competition" data-images="width_450 (2).png,Fested1.jpg,width_1600 (5).png,width_1600 (7).jpg,width_1600 (6).jpg,width_1080 (8).jpg">
+        <img src="width_450 (2).png,Fested1.jpg,width_1600 (5).png,width_1600 (7).jpg,width_1600 (6).jpg,width_1080 (8).jpg" alt="Geartalent" loading="lazy">
         <div class="cert-info">
           <a class="cert-link" href="https://www.futureedfest.com/" target="_blank" rel="noopener noreferrer">
             <h4 data-i18n="act4-h">Future Fest ED (click)</h4>
@@ -1059,13 +1067,27 @@
           <p data-i18n="cert19-p">Fested</p>
         </div>
       </div>
-      <div class="cert-card reveal" data-category="life" data-images="width_1080 (7).jpg,width_1600 (10).png,width_1600 (6).png,width_1478.jpg,width_800.jpg">
-        <img src="width_1080 (7).jpg,width_1600 (10).png,width_1600 (6).png,width_1478.jpg,width_800.jpg" alt="yiclub" loading="lazy">
+      <div class="cert-card reveal" data-category="life" data-images="width_600 (2).jpg,width_1600 (7).png,width_1080 (7).jpg,width_1600 (10).png,width_1600 (6).png,width_1478.jpg,width_800.jpg,width_600 (5).png,width_1600 (12).png,width_1600 (8).png,width_1600 (9).png,width_1600 (11).png,width_1600 (3).png,width_1600 (2).png,width_1600 (1).png,width_1600 (13).png,width_1600 (14).png">
+        <img src="width_600 (2).jpg,width_1600 (7).png,width_1080 (7).jpg,width_1600 (10).png,width_1600 (6).png,width_1478.jpg,width_800.jpg,width_600 (5).png,width_1600 (12).png,width_1600 (11).png,width_1600 (16).png" alt="yiclub" loading="lazy">
         <div class="cert-info">
           <a class="cert-link" href="https://www.facebook.com/people/KUSE-Young-Innovator-Club/61557047412861/?locale=th_TH" target="_blank" rel="noopener noreferrer">
             <h4 data-i18n="act4-h">KUSE Young Innovator Club (click)</h4>
           </a>
           <p data-i18n="cert19-p">KUSE Young Innovator Club</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="life" data-images="width_1600 (4).jpg,width_1600 (4).png,width_1600 (13).png,">
+        <img src="width_1600 (4).jpg,width_1600 (4).png,width_1600 (13).png," alt="yiclub" loading="lazy">
+        <div class="cert-info">
+            <h4 data-i18n="act4-h">สโมสรนิสิตคณะวิทยาศาสตร์และวิศวกรรมศาสตร์ (click)</h4>
+          <p data-i18n="cert19-p">สโมสรนิสิตคณะวิทยาศาสตร์และวิศวกรรมศาสตร์</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="competition" data-images="sdgkuse.jpg,541634413_1963386761111187_4606097120680103731_n.jpg">
+        <img src="sdgkuse.jpg,541634413_1963386761111187_4606097120680103731_n.jpg" alt="kusesdgs" loading="lazy">
+        <div class="cert-info">
+            <h4 data-i18n="act4-h">KUSE SDGs</h4>
+          <p data-i18n="cert19-p">KUSE SDGs</p>
         </div>
       </div>
 
@@ -1282,7 +1304,7 @@
   var filterBtns = document.querySelectorAll('.filter-btn');
 
   initCardMedia();
-  createEmptyPlaceholders();
+  // createEmptyPlaceholders();
   initCardMedia();
 
   filterBtns.forEach(function(btn) {
