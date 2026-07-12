@@ -469,6 +469,7 @@
     backdrop-filter: blur(6px);
     opacity: 0;
     transition: opacity 0.3s ease;
+    touch-action: pan-y;
   }
   #image-modal.show {
     display: flex;
@@ -484,6 +485,9 @@
     transform: scale(0.95);
     transition: transform 0.3s ease;
     object-fit: contain;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-drag: none;
   }
   #image-modal.show .modal-content {
     transform: scale(1);
@@ -612,7 +616,6 @@
       </div>
 
       <div class="avatar-row">
-        <!-- <img class="avatar" alt="รูปโปรไฟล์" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' rx='26' fill='%232B3B63'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dy='.1em' font-family='Space Grotesk, sans-serif' font-size='20' fill='%23F1F3EA'%3EA%3C/text%3E%3C/svg%3E"> -->
         <img class="avatar" alt="รูปโปรไฟล์ Prommin Buaphan" src="width_533 (1).jpg" style="object-fit: cover; border: 1px solid var(--line);">
         <div class="who">
           <strong>Prommin Buaphan</strong>
@@ -647,17 +650,6 @@
       <h2 data-i18n="about-h2">ประวัติ</h2>
     </div>
     <div class="about-body reveal">
-      <!-- <p data-i18n="about-p1">
-        สนใจการเปรียบเทียบสถาปัตยกรรมโครงข่ายประสาทเทียม — <strong>โมเดลไหนเสื่อมประสิทธิภาพช้าที่สุดเมื่อความซับซ้อนของปัญหาเพิ่มขึ้น</strong>
-        งานวิจัยหลักใช้ชุดข้อมูลซูโดกุที่เก็บเอง 5 ระดับความยาก เพื่อวิเคราะห์ per-difficulty degradation
-        ข้ามสถาปัตยกรรม CNN, GNN และ Transformer ซึ่งเป็นช่องว่างที่งานวิจัยส่วนใหญ่ยังไม่ได้ศึกษาอย่างเป็นระบบ
-      </p>
-      <p data-i18n="about-p2">
-        นอกเหนือจากงานวิทยานิพนธ์ ยังมีความสนใจต่อเนื่องด้าน<strong>การคำนวณเชิงวิวัฒนาการ</strong>
-        (Genetic Algorithm) สำหรับปัญหาหลายวัตถุประสงค์ ตั้งแต่การออกแบบโจทย์ซูโดกุ
-        ไปจนถึงการวางเส้นทางรถรับส่งในมหาวิทยาลัยและระบบมหาวิทยาลัยอัจฉริยะ
-      </p> -->
-      
       <h3 data-i18n="edu-h3" style="margin-top: 32px; margin-bottom: 16px; font-size: 20px;">ประวัติการศึกษา</h3>
       <div class="edu-card reveal">
         <div class="icon-badge">
@@ -1310,39 +1302,10 @@
     });
   }
 
-  function createEmptyPlaceholders(){
-    var categories = ['research', 'competition', 'training', 'life', 'award'];
-    var gridConfigs = [
-      { id: 'cert-grid', count: 6 },
-      { id: 'activities-grid', count: 10 }
-    ];
-
-    gridConfigs.forEach(function(config){
-      var targetGrid = document.getElementById(config.id);
-      if (!targetGrid) return;
-
-      for (var i = 0; i < config.count; i++) {
-        var category = categories[i % categories.length];
-        var card = document.createElement('div');
-        card.className = 'cert-card reveal empty-card';
-        card.setAttribute('data-category', category);
-        card.innerHTML = '<div class="empty-media">เพิ่มรูปภาพ<br>และข้อความที่นี่</div>' +
-          '<div class="cert-info" style="display:flex; flex-direction:column; gap:8px;">' +
-          '<div class="empty-title"></div>' +
-          '<div class="empty-line"></div>' +
-          '<div class="empty-line short"></div>' +
-          '</div>';
-        targetGrid.appendChild(card);
-        card.classList.add('in-view');
-      }
-    });
-  }
-
   /* ============ FILTER TABS LOGIC ============ */
   var filterBtns = document.querySelectorAll('.filter-btn');
 
   initCardMedia();
-  // createEmptyPlaceholders();
 
   filterBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -1454,6 +1417,54 @@
     }
   });
 
+  /* ============ SWIPE TO NAVIGATE (MOBILE) ============ */
+  (function(){
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var touchDX = 0;
+    var touchDY = 0;
+    var swiping = false;
+    var SWIPE_THRESHOLD = 40;
+
+    function onTouchStart(e){
+      if (!modal.classList.contains('show')) return;
+      var t = e.touches[0];
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+      touchDX = 0;
+      touchDY = 0;
+      swiping = true;
+    }
+    function onTouchMove(e){
+      if (!swiping) return;
+      var t = e.touches[0];
+      touchDX = t.clientX - touchStartX;
+      touchDY = t.clientY - touchStartY;
+      // Only claim the gesture (block page scroll) once it's clearly horizontal
+      if (Math.abs(touchDX) > Math.abs(touchDY) && Math.abs(touchDX) > 10){
+        e.preventDefault();
+      }
+    }
+    function onTouchEnd(){
+      if (!swiping) return;
+      swiping = false;
+      if (Math.abs(touchDX) > Math.abs(touchDY) && Math.abs(touchDX) > SWIPE_THRESHOLD){
+        if (touchDX < 0){
+          showModalImage(activeModalIndex + 1); // swipe left -> next
+        } else {
+          showModalImage(activeModalIndex - 1); // swipe right -> prev
+        }
+      }
+      touchDX = 0;
+      touchDY = 0;
+    }
+
+    modal.addEventListener('touchstart', onTouchStart, { passive: true });
+    modal.addEventListener('touchmove', onTouchMove, { passive: false });
+    modal.addEventListener('touchend', onTouchEnd, { passive: true });
+    modal.addEventListener('touchcancel', onTouchEnd, { passive: true });
+  })();
+
   /* ============ TH / EN TOGGLE ============ */
   var dict = {
     'nav-about':    { th:'ประวัติ', en:'Profile' },
@@ -1485,7 +1496,6 @@
       en:"Beyond the thesis, there's an ongoing interest in <strong>evolutionary computation</strong> (Genetic Algorithms) for multi-objective problems — from designing Sudoku puzzle variants to routing university shuttle buses and building smart-campus systems."
     },
     'edu-h3': { th:'ประวัติการศึกษา', en:'Education' },
-    'edu-degree-bachelor': { th:'มัธยมศึกษา — โรงเรียนปทุมเทพวิทยาคาร', en:"High School Pathumthep Witthayakarn School" },
     'edu-degree-bachelor': { th:'ปริญญาตรี — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)', en:"Bachelor's Degree — Kasetsart University, Chalermphrakiat Sakon Nakhon Campus" },
     'edu-note-bachelor': { th:'หลักสูตร วศ.บ. วิศวกรรมคอมพิวเตอร์ · 2566 – ปัจจุบัน', en:'Bachelor of Engineering (Computer Engineering) · 2023 – Present' },
     'edu-degree-master': { th:'ปริญญาโท — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)', en:"Master's Degree — Kasetsart University, Chalermphrakiat Sakon Nakhon Campus" },
