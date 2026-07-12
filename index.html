@@ -39,7 +39,6 @@
   }
 
   *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior: auto; }
     *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
@@ -53,7 +52,9 @@
     font-weight: 400;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
+  html{ scroll-behavior: smooth; overflow-x: hidden; }
 
   a{ color: inherit; }
   img{ max-width:100%; display:block; }
@@ -82,7 +83,43 @@
   h1,h2,h3{ font-family: var(--font-thai); font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -0.01em; }
 
   section{ padding: 96px 0; }
-  @media (max-width: 720px){ section{ padding: 64px 0; } }
+  
+  /* ============ RESPONSIVE UTILS ============ */
+  @media (max-width: 1024px){
+    section{ padding: 84px 0; }
+    .hero-grid-layout{ gap: 40px; }
+    .about-layout{ gap: 32px; }
+  }
+  @media (max-width: 720px){ 
+    section{ padding: 64px 0; } 
+    .container { padding: 0 20px; }
+    .hero{ padding: 56px 0 72px; }
+    .hero-grid-layout{ gap: 28px; }
+    .avatar-row{ flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 32px; padding-top: 24px; }
+    .avatar{ width: 120px; height: 120px; }
+    .cta-row{ flex-direction: column; align-items: stretch; }
+    .btn{ justify-content: center; }
+    .section-head{ flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 24px; }
+    .section-head h2{ font-size: 24px; }
+    .featured-card{ padding: 24px; gap: 20px; }
+    .featured-card h3{ font-size: 20px; }
+  }
+  @media (max-width: 560px){
+    .container{ padding: 0 16px; }
+    .nav-inner{ padding: 12px 16px; }
+    nav.links{ gap: 10px 14px; }
+    nav.links a{ font-size: 13px; }
+    .hero h1{ font-size: clamp(26px, 8vw, 34px); }
+    .hero p.lede{ font-size: 15px; }
+    .about-layout h2{ font-size: 24px; }
+    .project-card, .cert-card{ padding: 18px; }
+    .cert-media-main{ height: 160px; }
+    .thumb-btn{ width: 48px; height: 36px; }
+    .filter-btn{ padding: 7px 16px; font-size: 13px; }
+    .contact-links a{ width: 100%; justify-content: center; }
+    .contact-address{ flex-direction: column; }
+    .contact-address svg{ margin-top: 0; }
+  }
 
   /* ============ NAV ============ */
   header.site-nav{
@@ -109,6 +146,12 @@
   }
   .lang-toggle button.active{ background: var(--indigo); color:#fff; }
 
+  @media (max-width: 820px) {
+    .nav-inner { flex-direction: column; justify-content: center; padding: 16px; gap: 12px; }
+    .nav-right { justify-content: center; width: 100%; gap: 16px; }
+    nav.links { justify-content: center; gap: 16px; font-size: 14px; }
+  }
+
   /* ============ HERO ============ */
   .hero{ padding: 80px 0 96px; }
   .hero-grid-layout{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items:center; }
@@ -129,10 +172,10 @@
   .btn-ghost{ background: transparent; color: var(--ink); border-color: var(--line-strong); }
   .btn-ghost:hover{ border-color: var(--indigo); transform: translateY(-1px); }
 
-  .avatar-row{ display:flex; align-items:center; gap: 16px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); }
-  .avatar{ width: 52px; height: 52px; border-radius: 50%; flex-shrink:0; }
-  .avatar-row .who{ font-size: 14px; color: var(--ink-soft); }
-  .avatar-row .who strong{ display:block; color: var(--ink); font-size: 15px; }
+  .avatar-row { display:flex; align-items:center; gap: 32px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .avatar { width: 140px; height: 140px; border-radius: 50%; flex-shrink:0; box-shadow: 0 8px 24px -12px rgba(22,35,27,0.3); }
+  .avatar-row .who { font-size: 16.5px; color: var(--ink-soft); line-height: 1.6; }
+  .avatar-row .who strong { display:block; color: var(--ink); font-size: 24px; margin-bottom: 6px; letter-spacing: -0.01em; }
 
   .hero-visual{ display:flex; align-items:center; gap: 18px; justify-content:center; }
   .sudoku-wrap{ background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px; box-shadow: 0 20px 40px -28px rgba(22,35,27,0.35); }
@@ -162,7 +205,11 @@
   .about-body strong{ color: var(--ink); }
 
   .edu-card{ background: var(--surface); border:1px solid var(--line); border-radius: var(--radius-lg); padding: 22px 26px; display:flex; align-items:center; gap:18px; margin-bottom:12px;}
-  .edu-card .icon-badge{ width:44px; height:44px; background: var(--bg-soft); color: var(--indigo); flex-shrink:0; }
+  @media (max-width: 500px) {
+    .edu-card { flex-direction: column; text-align: center; padding: 20px; }
+    .edu-card .edu-text strong { font-size: 14.5px; }
+  }
+  .edu-card .icon-badge{ width:44px; height:44px; background: var(--bg-soft); color: var(--indigo); flex-shrink:0; border-radius:50%; display:flex; align-items:center; justify-content:center; }
   .edu-card .icon-badge svg{ width:20px; height:20px; }
   .edu-card .edu-text strong{ display:block; font-size: 15.5px; color: var(--ink); margin-bottom:2px; }
   .edu-card .edu-text span{ font-size: 13.5px; color: var(--ink-faint); }
@@ -173,7 +220,7 @@
   .section-head p{ color: var(--ink-soft); max-width: 46ch; margin:0; font-size: 15px; }
 
   .featured-card{ background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 40px; display:grid; grid-template-columns: 64px 1fr; gap: 28px; margin-bottom: 24px; }
-  @media (max-width: 640px){ .featured-card{ grid-template-columns: 1fr; padding: 28px; } }
+  @media (max-width: 640px){ .featured-card{ grid-template-columns: 1fr; padding: 24px; gap: 20px; } }
 
   .icon-badge{ width: 56px; height: 56px; border-radius: 50%; background: var(--indigo); display:flex; align-items:center; justify-content:center; color: #F1F3EA; }
   .icon-badge svg{ width: 26px; height: 26px; }
@@ -196,18 +243,23 @@
   }
   .project-card.in-view{ opacity:1; transform: translateY(0); }
   .project-card:hover{ border-color: var(--indigo-soft); box-shadow: 0 16px 30px -24px rgba(22,35,27,0.4); }
-  .project-card .icon-badge{ width: 42px; height: 42px; background: var(--bg-soft); color: var(--indigo); }
+  .project-card .icon-badge{ width: 42px; height: 42px; background: var(--bg-soft); color: var(--indigo); border-radius: 50%; display:flex; align-items:center; justify-content:center; }
   .project-card .icon-badge svg{ width: 20px; height: 20px; }
   .project-card h4{ margin:0; font-size: 16.5px; line-height: 1.4; color: var(--ink); }
   .project-card p{ margin:0; font-size: 14px; color: var(--ink-soft); flex-grow:1; }
   .project-card .chip-row .chip{ font-size: 11.5px; padding: 3px 9px; }
+  .project-card-link{ display:flex; flex-direction:column; gap:14px; height:100%; color:inherit; text-decoration:none; }
+  .project-card-link:hover h4{ color: var(--indigo); }
 
-  /* ============ CERTIFICATES ============ */
+  /* ============ CERTIFICATES / ACTIVITIES ============ */
   .cert-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
     gap: 24px;
     margin-top: 24px;
+  }
+  @media (max-width: 640px){
+    .cert-grid{ gap: 16px; grid-template-columns: 1fr; }
   }
   .cert-card {
     background: var(--surface);
@@ -224,10 +276,93 @@
     box-shadow: 0 12px 24px -16px rgba(22,35,27,0.3);
     transform: translateY(-4px);
   }
+  .cert-card.empty-card {
+    border-style: dashed;
+    border-color: var(--line-strong);
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(241,243,234,0.9));
+  }
+  .cert-card.empty-card .empty-media {
+    width: 100%;
+    height: 180px;
+    border-radius: var(--radius);
+    border: 1px dashed var(--line-strong);
+    background: linear-gradient(135deg, var(--bg-soft), rgba(255,255,255,0.75));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px;
+    color: var(--ink-faint);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .cert-card.empty-card .empty-title,
+  .cert-card.empty-card .empty-line {
+    border-radius: 999px;
+    background: var(--bg-soft);
+  }
+  .cert-card.empty-card .empty-title {
+    height: 16px;
+    width: 82%;
+  }
+  .cert-card.empty-card .empty-line {
+    height: 12px;
+    width: 100%;
+  }
+  .cert-card.empty-card .empty-line.short { width: 62%; }
+  .cert-media {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cert-media-main {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--bg-soft);
+    background-color: var(--bg-soft);
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+  }
+  .cert-media-main:hover {
+    opacity: 0.85;
+  }
+  .cert-media-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .thumb-btn {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    width: 56px;
+    height: 42px;
+    background: var(--surface);
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .thumb-btn:hover {
+    border-color: var(--indigo-soft);
+    transform: translateY(-1px);
+  }
+  .thumb-btn.active {
+    border-color: var(--indigo);
+    box-shadow: 0 0 0 2px rgba(120, 132, 255, 0.2);
+  }
+  .thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .cert-card img {
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 180px;
+    object-fit: cover;
     border-radius: var(--radius);
     border: 1px solid var(--bg-soft);
     background-color: var(--bg-soft);
@@ -243,6 +378,14 @@
     color: var(--ink);
     line-height: 1.4;
   }
+  .cert-link {
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+  }
+  .cert-link:hover h4 {
+    color: var(--indigo);
+  }
   .cert-info p {
     margin: 0;
     font-size: 13.5px;
@@ -257,6 +400,59 @@
     padding: 4px 8px;
     border-radius: 4px;
     color: var(--ink-faint);
+    word-break: break-all;
+  }
+
+  /* ============ FILTER TABS (RESPONSIVE) ============ */
+  .filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--ink-soft);
+    padding: 8px 24px;
+    border-radius: 999px;
+    font-family: var(--font-thai);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap; /* ป้องกันข้อความในปุ่มถูกตัดบรรทัด */
+  }
+  .filter-btn:hover {
+    border-color: var(--indigo);
+    color: var(--indigo);
+  }
+  .filter-btn.active {
+    background: var(--indigo);
+    color: #FFFFFF;
+    border-color: var(--indigo);
+  }
+  .cert-card.hidden {
+    display: none;
+  }
+
+  /* ทำให้ Filter Tabs เลื่อนได้ในมือถือ เพื่อประหยัดพื้นที่ */
+  @media (max-width: 600px) {
+    .filter-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 8px; /* เว้นที่ให้เงาหรือการ scroll */
+      -webkit-overflow-scrolling: touch; /* เลื่อนลื่นไหลบน iOS */
+      scrollbar-width: none; /* ซ่อน scrollbar ใน Firefox */
+    }
+    .filter-tabs::-webkit-scrollbar { 
+      display: none; /* ซ่อน scrollbar ใน Chrome/Safari/Edge */
+    }
+    .filter-btn {
+      flex-shrink: 0;
+      padding: 6px 18px;
+      font-size: 14px;
+    }
   }
 
   /* ============ IMAGE MODAL ============ */
@@ -293,8 +489,8 @@
   }
   .modal-close {
     position: absolute;
-    top: 24px;
-    right: 36px;
+    top: 16px;
+    right: 24px;
     color: #F1F3EA;
     font-size: 40px;
     font-weight: bold;
@@ -302,8 +498,53 @@
     transition: color 0.2s ease;
     line-height: 1;
   }
+  @media (max-width: 640px){
+    .modal-content{ max-width: 96%; max-height: 86vh; }
+    .modal-close{ top: 10px; right: 12px; font-size: 32px; }
+    .modal-nav{ width: 40px; height: 40px; font-size: 20px; }
+    .modal-nav.prev{ left: 10px; }
+    .modal-nav.next{ right: 10px; }
+    .modal-counter{ bottom: 12px; font-size: 12px; }
+  }
   .modal-close:hover {
     color: var(--amber);
+  }
+  .modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.16);
+    color: #F1F3EA;
+    border: 1px solid rgba(255,255,255,0.24);
+    border-radius: 999px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .modal-nav:hover {
+    background: rgba(255,255,255,0.24);
+    transform: translateY(-50%) scale(1.03);
+  }
+  .modal-nav.prev { left: 20px; }
+  .modal-nav.next { right: 20px; }
+  .modal-counter {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #F1F3EA;
+    background: rgba(0,0,0,0.25);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
   }
 
   /* ============ CONTACT / FOOTER ============ */
@@ -324,6 +565,11 @@
   .contact-address svg { width:20px; height:20px; flex-shrink:0; margin-top:2px; color: var(--amber); }
 
   footer .foot-note{ border-top: 1px solid rgba(255,255,255,0.15); padding-top: 22px; font-size: 13px; color: #9AA2C4; display:flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  @media (max-width: 600px){
+    footer .foot-note { flex-direction: column; text-align: center; gap: 12px; }
+    .contact-links { flex-direction: column; }
+    .contact-links a { justify-content: center; }
+  }
 
   .reveal{ opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.in-view{ opacity:1; transform: translateY(0); }
@@ -333,12 +579,13 @@
 
 <header class="site-nav">
   <div class="nav-inner">
-    <a class="logo" href="#home">Prommin Buaphan<span class="dot">.</span>AI</a>
+    <a class="logo" href="#home">Prommin Buaphan<span class="dot">.</span></a>
     <div class="nav-right">
       <nav class="links">
         <a href="#about" data-i18n="nav-about">ประวัติ</a>
         <a href="#projects" data-i18n="nav-projects">ผลงานและโครงงาน</a>
         <a href="#certificates" data-i18n="nav-certs">รางวัล</a>
+        <a href="#activities" data-i18n="nav-activities">กิจกรรม</a>
         <a href="#contact" data-i18n="nav-contact">ติดต่อ</a>
       </nav>
       <div class="lang-toggle" role="group" aria-label="Language toggle">
@@ -354,7 +601,7 @@
     <div>
       <span class="eyebrow" data-i18n="hero-eyebrow"> · KU.CSC</span>
       
-      <h1 data-i18n="hero-h1">ดูว่าโมเดลแต่ละแบบ<span class="accent"> "พัง" ตรงไหน</span> เมื่อกติกาเข้มงวดขึ้นทีละขั้น</h1>
+      <h1 data-i18n="hero-h1">พรหมมินทร์<span class="accent"> บัวพันธ์</span> - CPE</h1>
       <p class="lede" data-i18n="hero-lede">
         นิสิตหลักสูตรวิศวกรรมคอมพิวเตอร์ ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์ คณะวิทยาศาสตร์และวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร
       </p>
@@ -364,7 +611,8 @@
       </div>
 
       <div class="avatar-row">
-        <img class="avatar" alt="รูปโปรไฟล์" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' rx='26' fill='%232B3B63'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dy='.1em' font-family='Space Grotesk, sans-serif' font-size='20' fill='%23F1F3EA'%3EA%3C/text%3E%3C/svg%3E">
+        <!-- <img class="avatar" alt="รูปโปรไฟล์" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' rx='26' fill='%232B3B63'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dy='.1em' font-family='Space Grotesk, sans-serif' font-size='20' fill='%23F1F3EA'%3EA%3C/text%3E%3C/svg%3E"> -->
+        <img class="avatar" alt="รูปโปรไฟล์ Prommin Buaphan" src="width_533 (1).jpg" style="object-fit: cover; border: 1px solid var(--line);">
         <div class="who">
           <strong>Prommin Buaphan</strong>
           B.Eng. Student — Computer Engineering<br>
@@ -395,10 +643,10 @@
   <div class="container about-layout">
     <div>
       <span class="eyebrow" data-i18n="about-eyebrow">ประวัติส่วนตัว</span>
-      <h2 data-i18n="about-h2">ประวัติและแนวทางการวิจัย</h2>
+      <h2 data-i18n="about-h2">ประวัติ</h2>
     </div>
     <div class="about-body reveal">
-      <p data-i18n="about-p1">
+      <!-- <p data-i18n="about-p1">
         สนใจการเปรียบเทียบสถาปัตยกรรมโครงข่ายประสาทเทียม — <strong>โมเดลไหนเสื่อมประสิทธิภาพช้าที่สุดเมื่อความซับซ้อนของปัญหาเพิ่มขึ้น</strong>
         งานวิจัยหลักใช้ชุดข้อมูลซูโดกุที่เก็บเอง 5 ระดับความยาก เพื่อวิเคราะห์ per-difficulty degradation
         ข้ามสถาปัตยกรรม CNN, GNN และ Transformer ซึ่งเป็นช่องว่างที่งานวิจัยส่วนใหญ่ยังไม่ได้ศึกษาอย่างเป็นระบบ
@@ -407,7 +655,7 @@
         นอกเหนือจากงานวิทยานิพนธ์ ยังมีความสนใจต่อเนื่องด้าน<strong>การคำนวณเชิงวิวัฒนาการ</strong>
         (Genetic Algorithm) สำหรับปัญหาหลายวัตถุประสงค์ ตั้งแต่การออกแบบโจทย์ซูโดกุ
         ไปจนถึงการวางเส้นทางรถรับส่งในมหาวิทยาลัยและระบบมหาวิทยาลัยอัจฉริยะ
-      </p>
+      </p> -->
       
       <h3 data-i18n="edu-h3" style="margin-top: 32px; margin-bottom: 16px; font-size: 20px;">ประวัติการศึกษา</h3>
       <div class="edu-card reveal">
@@ -415,6 +663,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
         </div>
         <div>
+          <div class="edu-text">
+            <strong data-i18n="edu-degree-school">มัธยมศึกษา — โรงเรียนปทุมเทพวิทยาคาร</strong>
+            <span data-i18n="edu-note-school" style="display:block; margin-bottom:8px;">จบปีการศึกษา 2565</span>
+          </div>
           <div class="edu-text">
             <strong data-i18n="edu-degree-bachelor">ปริญญาตรี — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)</strong>
             <span data-i18n="edu-note-bachelor" style="display:block; margin-bottom:8px;">หลักสูตร วศ.บ. วิศวกรรมคอมพิวเตอร์ · 2566 – ปัจจุบัน</span>
@@ -454,7 +706,7 @@
         <div class="chip-row">
           <span class="chip">CNN</span>
           <span class="chip">GNN</span>
-          <span class="chip">Transformer</span>
+          <span class="chip">LSTM</span>
           <span class="chip">Constraint Satisfaction</span>
           <span class="chip">Self-collected Dataset</span>
         </div>
@@ -462,23 +714,23 @@
     </div>
 
     <div class="project-grid" id="project-grid">
-      <div class="project-card reveal">
+      <a class="project-card reveal project-card-link" href="https://youtu.be/veMDHfKhnWs" target="_blank" rel="noopener noreferrer">
         <div class="icon-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="6" r="2.6"/><circle cx="12" cy="18" r="2.6"/><path d="M8.2 7.6L10.5 15.5M15.8 7.6L13.5 15.5M8.6 6H15.4"/></svg>
         </div>
         <h4 data-i18n="card1-h">ConstraintDesignerGA — ออกแบบโจทย์ซูโดกุด้วย ILP+GA</h4>
-        <p data-i18n="card1-p">เครื่องมือออกแบบโจทย์แบบหลายวัตถุประสงค์ด้วย GA ผ่าน DEAP</p>
-        <div class="chip-row"><span class="chip">GA</span><span class="chip">DEAP</span><span class="chip">Genetic Algorithm</span></div>
-      </div>
+        <p data-i18n="card1-p">เครื่องมือออกแบบโจทย์แบบหลายวัตถุประสงค์ด้วย GA ผ่าน DEAP คลิกเพื่อดูคลิปบน YouTube</p>
+        <div class="chip-row"><span class="chip">GA</span><span class="chip">DEAP</span><span class="chip">Genetic Algorithm</span><span class="chip">YouTube</span></div>
+      </a>
 
-      <div class="project-card reveal">
+      <a class="project-card reveal project-card-link" href="https://youtu.be/fL-KUF9qpgQ?si=2f3zaPtfiPMBeSIO" target="_blank" rel="noopener noreferrer">
         <div class="icon-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c-4-2-7-6-7-10a7 7 0 0 1 14 0c0 4-3 8-7 10z"/><path d="M12 21V9"/></svg>
         </div>
         <h4 data-i18n="card3-h">GeoAI ตรวจจับจุดความร้อนด้วย GEE + ML</h4>
-        <p data-i18n="card3-p">ดึงข้อมูลผ่าน Google Earth Engine → โมเดล ML → แดชบอร์ดบนเว็บ</p>
-        <div class="chip-row"><span class="chip">Google Earth Engine</span><span class="chip">Remote Sensing</span></div>
-      </div>
+        <p data-i18n="card3-p">ดึงข้อมูลผ่าน Google Earth Engine → โมเดล ML → แดชบอร์ดบนเว็บ คลิกเพื่อดูคลิปบน YouTube</p>
+        <div class="chip-row"><span class="chip">Google Earth Engine</span><span class="chip">Remote Sensing</span><span class="chip">YouTube</span></div>
+      </a>
 
       <div class="project-card reveal">
         <div class="icon-badge">
@@ -489,14 +741,14 @@
         <div class="chip-row"><span class="chip">Random Forest</span><span class="chip">SVM</span><span class="chip">k-NN</span></div>
       </div>
 
-      <div class="project-card reveal">
+      <a class="project-card reveal project-card-link" href="https://drive.google.com/file/d/1whfKoFcXXGpMDXD4VnGPcU9FjySV8djs/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
         <div class="icon-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20v-6M8.5 17a5 5 0 0 1 0-8M15.5 17a5 5 0 0 0 0-8M5.5 20a9 9 0 0 1 0-14M18.5 20a9 9 0 0 0 0-14"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>
         </div>
         <h4 data-i18n="card6-h">ออกแบบเครือข่าย LoRaWAN และปรับปรุงประสิทธิภาพด้วย AI สำหรับติดตามรถบัสในมหาวิทยาลัย</h4>
-        <p data-i18n="card6-p">ออกแบบเครือข่าย LoRaWAN สำหรับระบบติดตามรถรับส่งภายในมหาวิทยาลัย ส่วนหนึ่งของแนวคิด Smart Campus ที่ มก.ฉกส.</p>
-        <div class="chip-row"><span class="chip">LoRaWAN</span><span class="chip">OMNeT++</span><span class="chip">IoT</span></div>
-      </div>
+        <p data-i18n="card6-p">ออกแบบเครือข่าย LoRaWAN สำหรับระบบติดตามรถรับส่งภายในมหาวิทยาลัย ส่วนหนึ่งของแนวคิด Smart Campus ที่ มก.ฉกส. คลิกเพื่อดูคลิปบน YouTube</p>
+        <div class="chip-row"><span class="chip">LoRaWAN</span><span class="chip">OMNeT++</span><span class="chip">IoT</span><span class="chip">YouTube</span></div>
+      </a>
     </div>
   </div>
 </section>
@@ -508,55 +760,326 @@
         <span class="eyebrow" data-i18n="cert-eyebrow">ใบรับรอง & รางวัล</span>
         <h2 data-i18n="cert-h2">Certifications & Awards</h2>
       </div>
+
+    <div class="filter-tabs reveal">
+      <button class="filter-btn active" data-filter="all" data-target="cert-grid" data-i18n="filter-all">ทั้งหมด</button>
+      <button class="filter-btn" data-filter="research" data-target="cert-grid" data-i18n="filter-research">งานวิจัย</button>
+      <button class="filter-btn" data-filter="competition" data-target="cert-grid" data-i18n="filter-competition">การแข่งขัน</button>
+      <button class="filter-btn" data-filter="training" data-target="cert-grid" data-i18n="filter-training">ค่าย/ฝึกอบรม</button>
+      <button class="filter-btn" data-filter="life" data-target="cert-grid" data-i18n="filter-life">องค์กรนิสิต</button>
+      <button class="filter-btn" data-filter="award" data-target="cert-grid" data-i18n="filter-award">รางวัล</button>
+    </div>
+
       <p data-i18n="cert-sub">รางวัลจากการแข่งขันทางวิชาการและการรับรองทักษะทางเทคโนโลยี (คลิกเพื่อขยายรูปภาพ)</p>
     </div>
 
-    <div class="cert-grid">
-      <div class="cert-card reveal">
-        <img src="messageImage_1783605141437_0.jpg" alt="Super AI Engineer Season 5" loading="lazy">
+    <div class="cert-grid" id="cert-grid">
+      <div class="cert-card reveal" data-category="training" data-images="messageImage_1783605141437_0.jpg">
+        <div class="cert-media">
+          <img class="cert-media-main" src="messageImage_1783605141437_0.jpg" alt="Super AI Engineer Season 5" loading="lazy">
+        </div>
         <div class="cert-info">
           <h4 data-i18n="cert1-h">Super AI Engineer Season 5</h4>
           <p data-i18n="cert1-p">Foundation AI (Theory) Level — Artificial Intelligence Association of Thailand</p>
         </div>
       </div>
-      <div class="cert-card reveal">
-        <img src="messageImage_1783605110416_0.jpg" alt="TPQI Huawei Certificate" loading="lazy">
+      <div class="cert-card reveal" data-category="training" data-images="messageImage_1783605125128_0.jpg,messageImage_1783605110416_0.jpg">
         <div class="cert-info">
           <h4 data-i18n="cert2-h">Certificate of Competency (AI Literacy)</h4>
           <p data-i18n="cert2-p">AI Literacy for Power Users — TPQI &amp; Huawei Technologies</p>
           <span class="cert-id">ID: OSCN-0012/AI-000-0000-A-26/041008</span>
         </div>
       </div>
-      <div class="cert-card reveal">
-        <img src="messageImage_1783605125128_0.jpg" alt="TPQI Huawei Certificate Details" loading="lazy">
+      <div class="cert-card reveal" data-category="competition" data-images="width_566.png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_566.png" alt="I NEW GEN 2024" loading="lazy">
+        </div>
         <div class="cert-info">
-          <h4 data-i18n="cert3-h">Certificate of Competency (AI Literacy)</h4>
-          <p data-i18n="cert3-p">AI Literacy for Power Users — TPQI &amp; Huawei Technologies</p>
-          <span class="cert-id">ID: OSCN-0012/AI-000-0000-A-26/041008</span>
+          <h4 data-i18n="cert3-h">การพัฒนาระบบความร้อนในรองเท้าเพื่อแก้ปัญหากลิ่นอับ</h4>
+          <p data-i18n="cert3-p">Silver Medal I NEW GEN 2024 โดย สำนักงานวิจัยแห่งชาติ</p>
         </div>
       </div>
-      <div class="cert-card reveal">
-        <img src="messageImage_1783605160078_0.jpg" alt="KUSE AI Hackathon 2025" loading="lazy">
+      <div class="cert-card reveal" data-category="competition" data-images="messageImage_1783605160078_0.jpg">
+        <div class="cert-media">
+          <img class="cert-media-main" src="messageImage_1783605160078_0.jpg" alt="KUSE AI Hackathon 2025" loading="lazy">
+        </div>
         <div class="cert-info">
           <h4 data-i18n="cert4-h">First Honour Award</h4>
           <p data-i18n="cert4-p">KUSE AI Hackathon 2025 — Faculty of Science and Engineering, Kasetsart University</p>
         </div>
       </div>
-      <div class="cert-card reveal">
-        <img src="messageImage_1783605150378_0.jpg" alt="KU AIdeation Challenge 2024" loading="lazy">
+      <div class="cert-card reveal" data-category="competition" data-images="messageImage_1783605150378_0.jpg">
+        <div class="cert-media">
+          <img class="cert-media-main" src="messageImage_1783605150378_0.jpg" alt="KU AIdeation Challenge 2024" loading="lazy">
+        </div>
         <div class="cert-info">
           <h4 data-i18n="cert5-h">Finalist: Certificate of Achievement</h4>
           <p data-i18n="cert5-p">KU AIdeation Challenge 2024 — Kasetsart University &amp; SEAMEO STEM-ED</p>
         </div>
       </div>
+      <div class="cert-card reveal" data-category="competition" data-images="width_565 (4).png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_565 (4).png" alt="I NEW GEN 2025" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert6-h">Smart bus system for rural areas</h4>
+          <p data-i18n="cert6-p">Bronze Medal I NEW GEN 2025 โดย สำนักงานวิจัยแห่งชาติ</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="life" data-images="657144681_2134102397372955_8783152534275331005_n.jpg">
+        <div class="cert-media">
+          <img class="cert-media-main" src="657144681_2134102397372955_8783152534275331005_n.jpg" alt="สโมสรนิสิต" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert7-h">ปฏิบัติงานด้านองค์กรนิสิต ผู้ช่วยฝ่ายวิชาการ สโมสรนิสิตคณะวิทยาศาสตร์และวิศวกรรม</h4>
+          <p data-i18n="cert7-p">มหาวิทยาลัยเกษตรศาสตร์</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="life" data-images="660132224_2134702963979565_6594320679173679063_n.jpg">
+        <div class="cert-media">
+          <img class="cert-media-main" src="660132224_2134702963979565_6594320679173679063_n.jpg" alt="สโมสรนิสิต" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert8-h">กรรมการบริหาร สโมสรนิสิตคณะวิทยาศาสตร์และวิศวกรรม</h4>
+          <p data-i18n="cert8-p">มหาวิทยาลัยเกษตรศาสตร์</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="training" data-images="width_561.png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_561.png" alt="StartUP BoostCAMP" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert9-h">อบรมเชิงปฏิบัติการ KU StartUP BoostCAMP 2024</h4>
+          <p data-i18n="cert9-p">มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตศรีราชา</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="training" data-images="width_561.png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_561.png" alt="KU AI Bootcamp 2025" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert10-h">KU AI Bootcamp 2025</h4>
+          <p data-i18n="cert10-p">มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตศรีราชา</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="training" data-images="width_632.png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_632.png" alt="KU AI Bootcamp 2024" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert11-h">KU AI Bootcamp 2024</h4>
+          <p data-i18n="cert11-p">มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตกำแพงแสน</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="award" data-images="width_562.png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_562.png" alt="The best Innovation" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert12-h">นิสิตดีเด่น ด้านความคิดสร้างสรรค์และนวัตกรรม ปีการศึกษา2567</h4>
+          <p data-i18n="cert12-p">มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="award" data-images="width_1080 (3).png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_1080 (3).png" alt="The best Innovation2" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert13-h">นิสิตดีเด่น ด้านความคิดสร้างสรรค์และนวัตกรรม ปีการศึกษา 2568</h4>
+          <p data-i18n="cert13-p">มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="award" data-images="width_1080 (11).png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_1080 (11).png" alt="เรียนดี" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert14-h">นิสิตมีผลการเรียนดี เกรดเฉลี่ยสะสมเกิน 3.5 ปีการศึกษา 2566</h4>
+          <p data-i18n="cert14-p">มหาวิทยาลัยเกษตรศาสตร์</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="award" data-images="width_1080 (2).png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_1080 (2).png" alt="เรียนดี2" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert15-h">นิสิตมีผลการเรียนดี เกรดเฉลี่ยสะสมเกิน 3.5 ปีการศึกษา 2567</h4>
+          <p data-i18n="cert15-p">มหาวิทยาลัยเกษตรศาสตร์</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="life" data-images="width_960.png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_960.png" alt="best YIC" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h4 data-i18n="cert16-h">รางวัลชมเชย ในงานประชุมวิชาการด้านองค์กรนิสิตมหาวิทยาลัยเกษตรศาสตร์ ปี 2568</h4>
+          <p data-i18n="cert16-p">ประยุกต์ใช้หลักการ STEAM4INNOVATOR กับสมาชิกชุมนุมนวัตกรรุ่นเยาว์ สโมสรนิสิตคณะวิทยาศาสตร์และวิศวกรรมศาสตร์ คณะวิทยาศาสตร์และวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="life" data-images="logoyic.jpg">
+        <div class="cert-media">
+          <img class="cert-media-main" src="logoyic.jpg" alt="Yic" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <a class="cert-link" href="https://drive.google.com/file/d/1kQR7ZXgwDgp3VOIASH5WU4gDUwnpPT9L/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+            <h4 data-i18n="cert17-h">ก่อตั้งชุมนุมนวัตกรรุ่นเยาว์ สโมสรนิสิตคณะวิทยาศาสตร์และวิศวกรรมศาสตร์ (click)</h4>
+          </a>
+          <p data-i18n="cert17-p">คณะวิทยาศาสตร์และวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="competition" data-images="width_1080 (9).png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_1080 (9).png" alt="Logo competition" loading="lazy">
+        </div>
+        <div class="cert-info">
+            <h4 data-i18n="cert18-h">รองชนะเลิศอันดับ 2 การออกแบบโลโก้ NCSI : RSP Northeast 1 The Cyber Security Innovations</h4>
+          <p data-i18n="cert18-p">อุทยานวิทยาศาสตร์ภูมิภาค ภาคตะวันออกเฉียงเหนือ 1 (จ.ขอนแก่น)</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="competition" data-images="width_1080 (12).png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_1080 (12).png" alt="Geartalent" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <a class="cert-link" href="https://www.eg.mahidol.ac.th/egmu/all-news/3781-gear-talent-project-an-academic-competition-showcasing-modern-innovation-for-the-academic-year-2023.html" target="_blank" rel="noopener noreferrer">
+            <h4 data-i18n="cert19-h">Gear Talent Bronze Award: Smart Bus System for Rural Areas  (click)</h4>
+          </a>
+          <p data-i18n="cert19-p">คณะวิศวกรรมศาสตร์ ม.มหิดล ร่วมกับ สภาคณบดีแห่งประเทศไทย และสหพันธ์นิสิตนักศึกษาวิศวกรรมศาสตร์ แห่งประเทศไทย (สนวท.) จัดโครงการ “Gear Talent” การแข่งขันทางด้านวิชาการ และนวัตกรรมสมัยใหม่ ประจำปีการศึกษา 2566
+             </p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="competition" data-images="width_1080 (4).png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_1080 (4).png" alt="Geartalent" loading="lazy">
+        </div>
+        <div class="cert-info">
+            <h4 data-i18n="cert20-h">ร่วมส่งผลงานประเภทผลงานด้านความยั่งยืน โครงการประกวดผลงานด้านความยั่งยืน(SDGs) มหาวิทยาลัยเกษตรศาสตร์ ปี ๒๕๖๘ (click)</h4>
+          <p data-i18n="cert20-p">ชื่อผลงาน “SCISIAM” Remote Laboratory for Smart City and Automation</p>
+             </p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="life" data-images="smo.jpg">
+        <div class="cert-media">
+          <img class="cert-media-main" src="smo.jpg" alt="Geartalent" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <a class="cert-link" href="https://www.facebook.com/share/p/19DCkmtMQp/" target="_blank" rel="noopener noreferrer">
+            <h4 data-i18n="cert21-h">กิจกรรมสอนน้องร้องเพลงมหาวิทยาลัยและรับน้องใหม่เชิงสร้างสรรค์ ประจำปีการศึกษา 2568 (click)</h4>
+          </a>
+          <p data-i18n="cert21-p">รางวัลชนะเลิศ (10,000 บาท) สโมสรนิสิตคณะวิทยาศาสตร์และวิศวกรรมศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร</p>
+             </p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="competition" data-images="width_1080 (6).png">
+        <div class="cert-media">
+          <img class="cert-media-main" src="width_1080 (6).png" alt="Geartalent" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <a class="cert-link" href="https://canva.link/3p6jobqwavhqlkh" target="_blank" rel="noopener noreferrer">
+            <h4 data-i18n="cert22-h">Future (click)</h4>
+          </a>
+          <p data-i18n="cert22-p">Fested</p>
+             </p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- Image Modal (Lightbox) Structure -->
+<section id="activities" style="background-color: var(--surface); border-top: 1px solid var(--line);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow" data-i18n="act-eyebrow">ภาพทั้งหมด</span>
+        <h2 data-i18n="act-h2">ภาพทั้งหมดตามหมวดหมู่</h2>
+      </div>
+      <p data-i18n="act-sub">ภาพจากงานวิจัย/ประชุมวิชาการ การแข่งขัน ค่ายฝึกอบรม ชีวิตนักศึกษา และรางวัล ถูกจัดกลุ่มให้เห็นภาพรวมของเส้นทางการเรียนและการทำงานอย่างเป็นระบบ</p>
+    </div>
+
+    <div class="filter-tabs reveal">
+      <button class="filter-btn active" data-filter="all" data-target="activities-grid" data-i18n="filter-all">ทั้งหมด</button>
+      <button class="filter-btn" data-filter="research" data-target="activities-grid" data-i18n="filter-research">งานประชุมวิชาการ/วิจัย</button>
+      <button class="filter-btn" data-filter="competition" data-target="activities-grid" data-i18n="filter-competition">การแข่งขัน</button>
+      <button class="filter-btn" data-filter="training" data-target="activities-grid" data-i18n="filter-training">ค่าย/ฝึกอบรม</button>
+      <button class="filter-btn" data-filter="life" data-target="activities-grid" data-i18n="filter-life">องค์กรนิสิต</button>
+      <button class="filter-btn" data-filter="award" data-target="activities-grid" data-i18n="filter-award">รางวัล</button>
+    </div>
+
+    <div class="cert-grid" id="activities-grid">
+      <div class="cert-card reveal" data-category="research" data-images="width_533.jpg,width_1600.jpg,ieecon1.jpg">
+        <img src="width_533.jpg,width_1600.jpg,ieecon1.jpg" alt="iEECON2026 Conference" loading="lazy">
+        <div class="cert-info">
+         <a class="cert-link" href="https://kuse.csc.ku.ac.th/article/2656" target="_blank" rel="noopener noreferrer">
+          <h4 data-i18n="act1-h">iEECON2026 International Conference</h4>
+          </a>
+          <p data-i18n="act1-p">เข้าร่วมงานประชุมวิชาการนานาชาติทางวิศวกรรมไฟฟ้า ณ โรงแรม Brighton Grand พัทยา เพื่ออัปเดตเทคโนโลยีและพูดคุยกับผู้เชี่ยวชาญในอุตสาหกรรม (มีนาคม 2569)</p>
+        </div>
+      </div>
+      
+      <div class="cert-card reveal" data-category="competition" data-images="kuseAI1.jpg,kuseAI2.jpg,kuseAI3.jpg">
+        <img src="kuseAI1.jpg,kuseAI2.jpg,kuseAI3.jpg" alt="KUSE AI Hackathon Vibe" loading="lazy">
+        <div class="cert-info">
+          <a class="cert-link" href="https://kuse.csc.ku.ac.th/article/2332" target="_blank" rel="noopener noreferrer">
+            <h4 data-i18n="act2-h">KUSE AI Hackathon 2025</h4>
+          </a>
+          <p data-i18n="act2-p">บรรยากาศการระดมสมองและทำงานร่วมกับทีม ภายใต้ความกดดันเพื่อพัฒนาระบบ AI ภายในเวลาที่จำกัด จนได้รับรางวัล First Honour</p>
+        </div>
+      </div>
+
+      <div class="cert-card reveal" data-category="competition" data-images="width_1080.jpg,width_600 (1).jpg">
+        <img src="width_1080.jpg,width_600 (1).jpg" alt="inewgen202401" loading="lazy">
+        <div class="cert-info">
+          <h4 data-i18n="act3-h">I NEW GEN 2024</h4>
+          <p data-i18n="act3-p">ออกบูธแสดงผลงาน การพัฒนาระบบความร้อนในร้องเท้าเพื่อแก้ปัญหากลิ่นอับ</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="competition" data-images="width_1567.jpg">
+        <img src="width_1567.jpg" alt="Geartalent" loading="lazy">
+        <div class="cert-info">
+          <h4 data-i18n="act4-h">Gear Talent Bronze Award: Smart Bus System for Rural Areas</h4>
+          <p data-i18n="cert19-p">คณะวิศวกรรมศาสตร์ ม.มหิดล ร่วมกับ สภาคณบดีแห่งประเทศไทย และสหพันธ์นิสิตนักศึกษาวิศวกรรมศาสตร์ แห่งประเทศไทย (สนวท.) จัดโครงการ “Gear Talent” การแข่งขันทางด้านวิชาการ และนวัตกรรมสมัยใหม่ ประจำปีการศึกษา 2566</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="competition" data-images="width_1600 (1).png,width_1080 (11).jpg,488183986_1844653939651137_129056733076730715_n.jpg,width_1600 (14).png">
+        <img src="width_1600 (1).png,width_1080 (11).jpg,488183986_1844653939651137_129056733076730715_n.jpg,width_1600 (14).png" alt="Geartalent" loading="lazy">
+        <div class="cert-info">
+          <a class="cert-link" href="https://canva.link/b0e78i1ijglt2sl" target="_blank" rel="noopener noreferrer">
+            <h4 data-i18n="act4-h">งานประชุมวิชาการด้านองค์กรนิสิตมหาวิทยาลัยเกษตรศาสตร์ ปี 2568 (click)</h4>
+          </a>
+          <p data-i18n="cert19-p">ประยุกต์ใช้หลักการ STEAM4INNOVATOR กับสมาชิกชุมนุมนวัตกรรุ่นเยาว์ สโมสรนิสิตคณะวิทยาศาสตร์และวิศวกรรมศาสตร์ คณะวิทยาศาสตร์และวิศวกรรมศาสตร์</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="competition" data-images="Fested1.jpg,width_1600 (5).png,width_1600 (7).jpg,width_1600 (6).jpg,width_1080 (8).jpg">
+        <img src="Fested1.jpg,width_1600 (5).png,width_1600 (7).jpg,width_1600 (6).jpg,width_1080 (8).jpg" alt="Geartalent" loading="lazy">
+        <div class="cert-info">
+          <a class="cert-link" href="https://www.futureedfest.com/" target="_blank" rel="noopener noreferrer">
+            <h4 data-i18n="act4-h">Future Fest ED (click)</h4>
+          </a>
+          <p data-i18n="cert19-p">Fested</p>
+        </div>
+      </div>
+      <div class="cert-card reveal" data-category="life" data-images="width_1080 (7).jpg,width_1600 (10).png,width_1600 (6).png,width_1478.jpg,width_800.jpg">
+        <img src="width_1080 (7).jpg,width_1600 (10).png,width_1600 (6).png,width_1478.jpg,width_800.jpg" alt="yiclub" loading="lazy">
+        <div class="cert-info">
+          <a class="cert-link" href="https://www.facebook.com/people/KUSE-Young-Innovator-Club/61557047412861/?locale=th_TH" target="_blank" rel="noopener noreferrer">
+            <h4 data-i18n="act4-h">KUSE Young Innovator Club (click)</h4>
+          </a>
+          <p data-i18n="cert19-p">KUSE Young Innovator Club</p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
 <div id="image-modal" aria-hidden="true">
+  <button class="modal-nav prev" type="button" aria-label="ดูภาพก่อนหน้า">&#10094;</button>
+  <button class="modal-nav next" type="button" aria-label="ดูภาพถัดไป">&#10095;</button>
+  <span class="modal-counter" id="modal-counter">1 / 1</span>
   <span class="modal-close" aria-label="Close">&times;</span>
-  <img class="modal-content" id="expanded-img" alt="Expanded Certificate">
+  <img class="modal-content" id="expanded-img" alt="Expanded Photo">
 </div>
 
 <footer id="contact">
@@ -592,7 +1115,7 @@
 
     <div class="foot-note">
       <span>© 2026 Prommin Buaphan — Portfolio</span>
-      <span>Kasetsart University, Chalermphrakiat Sakon Nakhon Campus</span>
+      <span>CPE9</span>
     </div>
   </div>
 </footer>
@@ -636,6 +1159,16 @@
   }
 
   var revealEls = document.querySelectorAll('.reveal, .project-card, .cert-card');
+  var modal = document.getElementById('image-modal');
+  var expandedImg = document.getElementById('expanded-img');
+  var modalCounter = document.getElementById('modal-counter');
+  var spanClose = document.getElementsByClassName('modal-close')[0];
+  var modalPrev = document.querySelector('.modal-nav.prev');
+  var modalNext = document.querySelector('.modal-nav.next');
+  var certImages = document.querySelectorAll('.cert-card .cert-media-main, .cert-card > img');
+  var modalImages = [];
+  var activeModalIndex = 0;
+
   if ('IntersectionObserver' in window && !prefersReduced){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
@@ -647,41 +1180,218 @@
     revealEls.forEach(function(el){ el.classList.add('in-view'); });
   }
 
+  function initCardMedia(){
+    var cards = document.querySelectorAll('.cert-card');
+    cards.forEach(function(card){
+      if (card.querySelector('.cert-media')) return;
+
+      var images = [];
+      var dataImages = card.getAttribute('data-images');
+      if (dataImages) {
+        images = dataImages.split(',').map(function(value){ return value.trim(); }).filter(Boolean);
+      }
+
+      var existingImg = card.querySelector('img');
+      if (!existingImg && !images.length) return;
+      if (!images.length) {
+        images = [existingImg.getAttribute('src')].filter(Boolean);
+      }
+      if (!images.length) return;
+
+      var media = document.createElement('div');
+      media.className = 'cert-media';
+      var mainImg = document.createElement('img');
+      mainImg.className = 'cert-media-main';
+      mainImg.src = images[0];
+      mainImg.alt = existingImg ? existingImg.getAttribute('alt') || 'Activity photo' : 'Activity photo';
+      mainImg.loading = 'lazy';
+      mainImg.addEventListener('click', function(){
+        openModalFromImage(this);
+      });
+      media.appendChild(mainImg);
+
+      if (images.length > 1) {
+        var thumbs = document.createElement('div');
+        thumbs.className = 'cert-media-thumbs';
+        images.forEach(function(src, index){
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'thumb-btn' + (index === 0 ? ' active' : '');
+          btn.setAttribute('aria-label', 'ดูภาพที่ ' + (index + 1));
+          var thumbImg = document.createElement('img');
+          thumbImg.src = src;
+          thumbImg.alt = 'ภาพที่ ' + (index + 1);
+          thumbImg.loading = 'lazy';
+          btn.appendChild(thumbImg);
+          btn.addEventListener('click', function(){
+            mainImg.src = src;
+            Array.from(thumbs.querySelectorAll('.thumb-btn')).forEach(function(item){ item.classList.remove('active'); });
+            btn.classList.add('active');
+          });
+          thumbs.appendChild(btn);
+        });
+        media.appendChild(thumbs);
+      }
+
+      if (existingImg) {
+        existingImg.remove();
+      }
+
+      var info = card.querySelector('.cert-info');
+      if (info) {
+        card.insertBefore(media, info);
+      } else {
+        card.appendChild(media);
+      }
+
+      if (images.length > 1) {
+        card.classList.add('multi-media');
+      }
+    });
+  }
+
+  function createEmptyPlaceholders(){
+    var categories = ['research', 'competition', 'training', 'life', 'award'];
+    var gridConfigs = [
+      { id: 'cert-grid', count: 6 },
+      { id: 'activities-grid', count: 10 }
+    ];
+
+    gridConfigs.forEach(function(config){
+      var targetGrid = document.getElementById(config.id);
+      if (!targetGrid) return;
+
+      for (var i = 0; i < config.count; i++) {
+        var category = categories[i % categories.length];
+        var card = document.createElement('div');
+        card.className = 'cert-card reveal empty-card';
+        card.setAttribute('data-category', category);
+        card.innerHTML = '<div class="empty-media">เพิ่มรูปภาพ<br>และข้อความที่นี่</div>' +
+          '<div class="cert-info" style="display:flex; flex-direction:column; gap:8px;">' +
+          '<div class="empty-title"></div>' +
+          '<div class="empty-line"></div>' +
+          '<div class="empty-line short"></div>' +
+          '</div>';
+        targetGrid.appendChild(card);
+        card.classList.add('in-view');
+      }
+    });
+  }
+
+  /* ============ FILTER TABS LOGIC ============ */
+  var filterBtns = document.querySelectorAll('.filter-btn');
+
+  initCardMedia();
+  createEmptyPlaceholders();
+  initCardMedia();
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var filterGroup = this.closest('.filter-tabs');
+      if (!filterGroup) return;
+
+      var groupBtns = filterGroup.querySelectorAll('.filter-btn');
+      groupBtns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+
+      var filterValue = this.getAttribute('data-filter');
+      var targetId = this.getAttribute('data-target');
+      var targetGrid = targetId ? document.getElementById(targetId) : null;
+      var cards = targetGrid ? targetGrid.querySelectorAll('.cert-card') : [];
+
+      cards.forEach(function(card) {
+        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+          card.classList.remove('hidden');
+          card.classList.add('in-view');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
   /* ============ IMAGE MODAL LOGIC ============ */
-  var modal = document.getElementById("image-modal");
-  var expandedImg = document.getElementById("expanded-img");
-  var spanClose = document.getElementsByClassName("modal-close")[0];
-  var certImages = document.querySelectorAll('.cert-card img');
+  function updateModalCounter() {
+    if (modalCounter) {
+      var total = modalImages.length || 1;
+      modalCounter.textContent = (activeModalIndex + 1) + ' / ' + total;
+    }
+  }
+
+  function openModalFromImage(img) {
+    var card = img.closest('.cert-card');
+    var images = [];
+    if (card) {
+      var dataImages = card.getAttribute('data-images');
+      if (dataImages) {
+        images = dataImages.split(',').map(function(value){ return value.trim(); }).filter(Boolean);
+      }
+      if (!images.length) {
+        var directImg = card.querySelector('img');
+        if (directImg) images = [directImg.getAttribute('src')].filter(Boolean);
+      }
+    }
+    if (!images.length) {
+      images = [img.getAttribute('src')].filter(Boolean);
+    }
+
+    modalImages = images;
+    activeModalIndex = images.indexOf(img.getAttribute('src'));
+    if (activeModalIndex < 0) activeModalIndex = 0;
+
+    modal.style.display = 'flex';
+    setTimeout(function(){ modal.classList.add('show'); }, 10);
+    expandedImg.src = modalImages[activeModalIndex];
+    updateModalCounter();
+  }
+
+  function showModalImage(index) {
+    if (!modalImages.length) return;
+    activeModalIndex = (index + modalImages.length) % modalImages.length;
+    expandedImg.src = modalImages[activeModalIndex];
+    updateModalCounter();
+  }
 
   function closeModal() {
-    modal.classList.remove("show");
+    modal.classList.remove('show');
     setTimeout(function() {
-      modal.style.display = "none";
-      expandedImg.src = "";
+      modal.style.display = 'none';
+      expandedImg.src = '';
+      modalImages = [];
+      activeModalIndex = 0;
+      updateModalCounter();
     }, 300);
   }
 
   certImages.forEach(function(img) {
     img.addEventListener('click', function() {
-      modal.style.display = "flex";
-      setTimeout(function() {
-        modal.classList.add("show");
-      }, 10);
-      expandedImg.src = this.src;
+      openModalFromImage(this);
     });
   });
+
+  if (modalPrev) {
+    modalPrev.addEventListener('click', function(){ showModalImage(activeModalIndex - 1); });
+  }
+  if (modalNext) {
+    modalNext.addEventListener('click', function(){ showModalImage(activeModalIndex + 1); });
+  }
 
   spanClose.addEventListener('click', closeModal);
   
   modal.addEventListener('click', function(e) {
-    if (e.target !== expandedImg) {
+    if (e.target === modal) {
       closeModal();
     }
   });
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === "Escape" && modal.classList.contains("show")) {
+    if (!modal.classList.contains('show')) return;
+    if (e.key === 'Escape') {
       closeModal();
+    } else if (e.key === 'ArrowLeft') {
+      showModalImage(activeModalIndex - 1);
+    } else if (e.key === 'ArrowRight') {
+      showModalImage(activeModalIndex + 1);
     }
   });
 
@@ -690,22 +1400,23 @@
     'nav-about':    { th:'ประวัติ', en:'Profile' },
     'nav-projects': { th:'ผลงานและโครงงาน', en:'Works & Projects' },
     'nav-certs':    { th:'รางวัล', en:'Awards' },
-    'nav-contact':  { th:'ที่อยู่ติดต่อ', en:'Contact Info' },
+    'nav-activities': { th:'กิจกรรม', en:'Activities' },
+    'nav-contact':  { th:'ติดต่อ', en:'Contact Info' },
 
-    'hero-eyebrow': { th:'AI / ML · มก.ฉกส.', en:'AI / ML · Kasetsart University' },
+    'hero-eyebrow': { th:' · .', en:' · Kasetsart University' },
     'hero-h1': {
-      th:'ดูว่าโมเดลแต่ละแบบ<span class="accent"> "พัง" ตรงไหน</span> เมื่อกติกาเข้มงวดขึ้นทีละขั้น',
-      en:'Finding out where each model <span class="accent">breaks down</span> as the constraints get tighter'
+      th:'พรหมมินทร์<span class="accent"> บัวพันธ์</span> - CPE',
+      en:'Prommin <span class="accent">Buaphan</span> - CPE'
     },
     'hero-lede': {
       th:'นิสิตหลักสูตรวิศวกรรมคอมพิวเตอร์ ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์ คณะวิทยาศาสตร์และวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร',
       en:"Computer Engineering student, Department of Electrical and Computer Engineering, Faculty of Science and Engineering, Kasetsart University, Chalermphrakiat Sakon Nakhon Campus."
     },
     'cta-projects': { th:'ดูผลงานและโครงงาน', en:'View Works & Projects' },
-    'cta-contact':  { th:'ที่อยู่ติดต่อ', en:'Contact Info' },
+    'cta-contact':  { th:'ติดต่อ', en:'Contact Info' },
 
     'about-eyebrow': { th:'ประวัติส่วนตัว', en:'Profile' },
-    'about-h2': { th:'ประวัติและแนวทางการวิจัย', en:'Profile & Research Approach' },
+    'about-h2': { th:'ประวัติ', en:'Profile' },
     'about-p1': {
       th:'สนใจการเปรียบเทียบสถาปัตยกรรมโครงข่ายประสาทเทียมเชิงประจักษ์ — ไม่ใช่แค่ว่าโมเดลไหน "แม่นกว่า" แต่คือ<strong>โมเดลไหนเสื่อมประสิทธิภาพช้าที่สุดเมื่อความซับซ้อนของปัญหาเพิ่มขึ้น</strong> งานวิจัยหลักใช้ชุดข้อมูลซูโดกุที่เก็บเอง 5 ระดับความยาก เพื่อวิเคราะห์ per-difficulty degradation ข้ามสถาปัตยกรรม CNN, GNN และ Transformer ซึ่งเป็นช่องว่างที่งานวิจัยส่วนใหญ่ยังไม่ได้ศึกษาอย่างเป็นระบบ',
       en:"Focused on empirical comparison of neural network architectures — not just which model is 'more accurate,' but <strong>which one degrades the slowest as problem complexity increases</strong>. The core thesis uses a self-collected Sudoku dataset spanning five difficulty levels to analyze per-difficulty degradation across CNN, GNN, and Transformer architectures — a gap most existing research hasn't studied systematically."
@@ -715,6 +1426,7 @@
       en:"Beyond the thesis, there's an ongoing interest in <strong>evolutionary computation</strong> (Genetic Algorithms) for multi-objective problems — from designing Sudoku puzzle variants to routing university shuttle buses and building smart-campus systems."
     },
     'edu-h3': { th:'ประวัติการศึกษา', en:'Education' },
+    'edu-degree-bachelor': { th:'มัธยมศึกษา — โรงเรียนปทุมเทพวิทยาคาร', en:"High School Pathumthep Witthayakarn School" },
     'edu-degree-bachelor': { th:'ปริญญาตรี — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)', en:"Bachelor's Degree — Kasetsart University, Chalermphrakiat Sakon Nakhon Campus" },
     'edu-note-bachelor': { th:'หลักสูตร วศ.บ. วิศวกรรมคอมพิวเตอร์ · 2566 – ปัจจุบัน', en:'Bachelor of Engineering (Computer Engineering) · 2023 – Present' },
     'edu-degree-master': { th:'ปริญญาโท — มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร (มก.ฉกส.)', en:"Master's Degree — Kasetsart University, Chalermphrakiat Sakon Nakhon Campus" },
@@ -744,7 +1456,7 @@
     'card6-p': { th:'ออกแบบเครือข่าย LoRaWAN สำหรับระบบติดตามรถรับส่งภายในมหาวิทยาลัย ส่วนหนึ่งของแนวคิด Smart Campus ที่ มก.ฉกส.', en:'Designed a LoRaWAN network for a university shuttle-tracking system, part of a broader smart-campus initiative.' },
 
     'cert-eyebrow': { th:'ใบรับรอง & รางวัล', en:'Certifications & Awards' },
-    'cert-h2': { th:'ใบรับรอง & รางวัล', en:'Certifications & Awards' },
+    'cert-h2': { th:'Certifications & Awards', en:'Certifications & Awards' },
     'cert-sub': { th:'รางวัลจากการแข่งขันทางวิชาการและการรับรองทักษะทางเทคโนโลยี (คลิกเพื่อขยายรูปภาพ)', en:'Academic competition awards and technology skill certifications. (Click to enlarge)' },
     
     'cert1-h': { th:'Super AI Engineer Season 5', en:'Super AI Engineer Season 5' },
@@ -753,14 +1465,46 @@
     'cert2-h': { th:'Certificate of Competency (AI Literacy)', en:'Certificate of Competency (AI Literacy)' },
     'cert2-p': { th:'AI Literacy for Power Users — TPQI &amp; Huawei Technologies', en:'AI Literacy for Power Users — TPQI &amp; Huawei Technologies' },
     
-    'cert3-h': { th:'Certificate of Competency (Details)', en:'Certificate of Competency (Details)' },
-    'cert3-p': { th:'Occupational Standard for AI Literacy Competencies', en:'Occupational Standard for AI Literacy Competencies' },
+    'cert3-h': { th:'Certificate of Competency (AI Literacy)', en:'Certificate of Competency (AI Literacy)' },
+    'cert3-p': { th:'AI Literacy for Power Users — TPQI &amp; Huawei Technologies', en:'AI Literacy for Power Users — TPQI &amp; Huawei Technologies' },
     
     'cert4-h': { th:'First Honour Award', en:'First Honour Award' },
     'cert4-p': { th:'KUSE AI Hackathon 2025 — Faculty of Science and Engineering, Kasetsart University', en:'KUSE AI Hackathon 2025 — Faculty of Science and Engineering, Kasetsart University' },
     
     'cert5-h': { th:'Finalist: Certificate of Achievement', en:'Finalist: Certificate of Achievement' },
     'cert5-p': { th:'KU AIdeation Challenge 2024 — Kasetsart University &amp; SEAMEO STEM-ED', en:'KU AIdeation Challenge 2024 — Kasetsart University &amp; SEAMEO STEM-ED' },
+
+    'act-eyebrow': { th:'ภาพทั้งหมด', en:'All Gallery' },
+    'act-h2': { th:'ภาพทั้งหมดตามหมวดหมู่', en:'Gallery by Categories' },
+    'act-sub': { 
+      th:'ภาพจากงานวิจัย การแข่งขัน ค่ายฝึกอบรม ชีวิตนักศึกษา และรางวัล ถูกจัดกลุ่มให้เห็นภาพรวมของเส้นทางการเรียนและการทำงานอย่างเป็นระบบ', 
+      en:'Images from research, competitions, training camps, student life, and awards are systematically grouped to showcase the learning and working journey.' 
+    },
+    
+    'filter-all': { th:'ทั้งหมด', en:'All' },
+    'filter-research': { th:'งานวิจัย', en:'Research' },
+    'filter-competition': { th:'การแข่งขัน', en:'Competitions' },
+    'filter-training': { th:'ค่าย/ฝึกอบรม', en:'Training/Camps' },
+    'filter-life': { th:'ชีวิตนักศึกษา', en:'Student Life' },
+    'filter-award': { th:'รางวัล', en:'Awards' },
+
+    'act1-h': { th:'iEECON2026 International Conference', en:'iEECON2026 International Conference' },
+    'act1-p': { 
+      th:'เข้าร่วมงานประชุมวิชาการนานาชาติทางวิศวกรรมไฟฟ้า ณ โรงแรม Brighton Grand พัทยา เพื่ออัปเดตเทคโนโลยีและพูดคุยกับผู้เชี่ยวชาญในอุตสาหกรรม (มีนาคม 2569)', 
+      en:'Attended the International Electrical Engineering Congress at Brighton Grand Hotel, Pattaya, to explore emerging technologies and network with industry experts (March 2026).' 
+    },
+    
+    'act2-h': { th:'KUSE AI Hackathon 2025', en:'KUSE AI Hackathon 2025' },
+    'act2-p': { 
+      th:'บรรยากาศการระดมสมองและทำงานร่วมกับทีม ภายใต้ความกดดันเพื่อพัฒนาระบบ AI ภายในเวลาที่จำกัด จนได้รับรางวัล First Honour', 
+      en:'Brainstorming and collaborating under pressure to develop an AI solution within a tight timeframe, leading to the First Honour Award.' 
+    },
+    
+    'act3-h': { th:'Senior Project / Research Presentation', en:'Senior Project / Research Presentation' },
+    'act3-p': { 
+      th:'นำเสนอความคืบหน้าโครงงานวิจัยด้านอัลกอริทึม (Metaheuristic & Genetic Algorithm) สำหรับการสร้างโจทย์ซูโดกุ', 
+      en:'Presenting research progress on Metaheuristic and Genetic Algorithms applied to multi-objective Sudoku puzzle generation.' 
+    },
 
     'contact-eyebrow': { th:'ที่อยู่ติดต่อ', en:'Contact Info' },
     'contact-h2': { th:'สนใจร่วมงานวิจัยหรือพูดคุยเรื่องโปรเจกต์?', en:'Interested in collaborating or discussing a project?' },
